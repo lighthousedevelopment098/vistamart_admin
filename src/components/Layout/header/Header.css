@@ -1,0 +1,160 @@
+/* Styles for the Header component */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the header is above other content */
+    background-color: white; /* Background color to match the page */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .header-spacer {
+    height: 60px; /* Adjust height to match the header's height */
+    width: 100%;
+  }
+  
+  .left img {
+    
+    height: 60px;
+    width: 100px; /* Adjust logo height as needed */
+  }
+  
+  .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .right > div {
+    margin-right: 20px; /* Space between icons */
+  }
+  
+  .right img {
+    border-radius: 50%;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .justify-around {
+    justify-content: space-around;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .border {
+    border: 1px solid #e2e8f0;
+  }
+  
+  .border-gray-300 {
+    border-color: #e2e8f0;
+  }
+  
+  .rounded {
+    border-radius: 0.375rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .w-40 {
+    width: 10rem;
+  }
+  
+  .h-3 {
+    height: 0.75rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .hover\:bg-gray-100:hover {
+    background-color: #f7fafc;
+  }
+  
+  .text-xs {
+    font-size: 0.75rem;
+  }
+  
+  .bg-gray-500 {
+    background-color: #a0aec0;
+  }
+  
+  .text-white {
+    color: #fff;
+  }
+  
+  .bg-red-500 {
+    background-color: #f56565;
+  }
+  
+  .inline-block {
+    display: inline-block;
+  }
+  
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  
+  .mr-1 {
+    margin-right: 0.25rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .mr-6 {
+    margin-right: 1.5rem;
+  }
+  
+  .ml-1 {
+    margin-left: 0.25rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .z-10 {
+    z-index: 10;
+  }
+  

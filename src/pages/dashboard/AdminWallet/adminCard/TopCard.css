@@ -1,0 +1,160 @@
+/* 
+
+:root { 
+
+    --font: "Inter", sans-serif;
+} 
+
+.col-md-6,.col-xl-4 { 
+    position: relative; 
+    width: 100%; 
+    padding-right: 15px; 
+    padding-left: 15px;
+} 
+
+@media (min-width: 768px){ 
+  .col-md-6 { 
+    -ms-flex: 0 0 50%; 
+    flex: 0 0 50%; 
+    max-width: 50%;
+  } 
+}     
+
+@media (min-width: 1200px){ 
+  .col-xl-4 { 
+    -ms-flex: 0 0 33.33333%; 
+    flex: 0 0 33.33333%; 
+    max-width: 33.33333%;
+  } 
+}     
+
+
+
+
+
+
+.card { 
+    position: relative; 
+    display: -ms-flexbox; 
+    display: flex; 
+    -ms-flex-direction: column; 
+    flex-direction: column; 
+    min-width: 0; 
+    word-wrap: break-word; 
+    background-color: #fff; 
+    background-clip: border-box; 
+    border: .0625rem solid rgba(231, 234, 243, .7); 
+    border-radius: .75rem;
+} 
+
+.h-100 { 
+    height: 100% !important;
+} 
+
+.card { 
+    box-shadow: 0 6px 12px rgba(140, 152, 164, .075);
+} 
+
+.card { 
+    border-color: #f4f4f4; 
+    box-shadow: 0 5px 10px rgba(51,66,87,.05); 
+    transition: all .3s ease;
+} 
+
+.remove-card-shadow:hover { 
+    box-shadow: 0 5px 10px rgba(51,66,87,.05)!important;
+} 
+
+.card:hover { 
+    box-shadow: 0 5px 24px rgba(7,59,116,.15);
+} 
+
+.card-header { 
+    padding: 1.3125rem 1.3125rem; 
+    margin-bottom: 0; 
+    background-color: #fff; 
+    border-bottom: .0625rem solid rgba(231, 234, 243, .7);
+} 
+
+.card-header { 
+    display: -ms-flexbox; 
+    display: flex; 
+    -ms-flex-direction: row; 
+    flex-direction: row; 
+    -ms-flex-align: center; 
+    align-items: center; 
+    -ms-flex-pack: justify; 
+    justify-content: space-between; 
+    padding-top: 1rem; 
+    padding-bottom: 1rem;
+} 
+
+.card-header { 
+    border-bottom: 1px solid #f4f4f4; 
+    box-shadow: 0 3px 3px rgba(51,66,87,.05);
+} 
+
+.card-header:first-child { 
+    border-radius: .6875rem .6875rem 0 0;
+} 
+
+.card-body { 
+    -ms-flex: 1 1 auto; 
+    flex: 1 1 auto; 
+    min-height: 1px; 
+    padding: 1.3125rem;
+} 
+
+
+
+.orders-count { 
+    border-radius: 5px; 
+    font-size: 12px; 
+    line-height: 1; 
+    padding: 4px 10px; 
+    white-space: nowrap; 
+    position: relative; 
+} 
+
+.gap-1 { 
+    gap: 4px;
+} 
+
+.orders-count:before { 
+    content: ""; 
+    position: absolute; 
+    border: 1px solid var(--c1); 
+    border-radius: 5px; 
+    left: 0; 
+    top: 0; 
+    right: 0; 
+    bottom: 0; 
+    opacity: .1;
+} 
+
+.rounded-circle { 
+    border-radius: 50% !important;
+} 
+
+  .avatar { 
+    position: relative; 
+    display: inline-block; 
+    width: 2.625rem; 
+    height: 2.625rem; 
+    border-radius: .3125rem;
+}  
+
+ .avatar-lg { 
+    width: 3.36875rem; 
+    height: 3.36875rem;
+} 
+
+.avatar-lg { 
+    min-width: 3.36875rem;
+}   
+
+.orders-count > div:last-child  { 
+    font-weight: 600;
+} 
+
+ */

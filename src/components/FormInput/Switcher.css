@@ -1,0 +1,36 @@
+.switcher_input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.switcher_control {
+    position: relative;
+    width: 36px;
+    height: 18px;
+    background-color: #ced7dd;
+    border-radius: 50px;
+    transition: background-color 0.15s ease-in;
+}
+
+.switcher_input:checked ~ .switcher_control {
+    background-color: green !important; /* Your custom active color */
+}
+
+.switcher_control::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 1px;
+    left: 1px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: left 0.15s ease-in;
+}
+
+.switcher_input:checked ~ .switcher_control::after {
+    left: 19px;
+}

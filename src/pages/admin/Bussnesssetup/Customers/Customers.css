@@ -1,0 +1,114 @@
+
+
+  :root {
+    --c1: #0177cd;
+    --c1-rgb: 1, 119, 205;
+    --title-color: #334257;
+    --text-color: #5b6777;
+    --font: "Inter", sans-serif;
+  }
+  
+  .container-fluid {
+    width: 100%;
+    /* padding-right: 2rem; */
+    /* padding-left: 2rem; */
+  }
+  
+  /* .content {
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  } */
+  
+  .switcher {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    inline-size: 36px;
+    block-size: 18px;
+    margin-bottom: 0;
+  }
+  
+  .switcher_input:checked ~ .switcher_control:not(.unchecked) {
+    background-color: var(--c1);
+  }
+  
+  .switcher_control {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 36px;
+    block-size: 18px;
+    transition: background-color .15s ease-in;
+    background-color: #ced7dd;
+    border-radius: 50px;
+  }
+  
+  .switcher_input:checked ~ .switcher_control:not(.unchecked)::after {
+    inset-inline-start: 19px;
+  }
+  
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #677788;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: .0625rem solid transparent;
+    padding: .54688rem .875rem;
+    font-size: .875rem;
+    line-height: 1.6;
+    border-radius: .3125rem;
+    transition: all .2s ease-in-out;
+  }
+  
+  .btn--primary {
+    background-color: var(--c1);
+    color: #fff;
+  }
+  
+  .btn:hover {
+    color: #677788;
+    text-decoration: none;
+  }
+  
+  .btn--primary:hover {
+    background-color: #04a3e7;
+    color: #fff;
+  }
+  
+  .btn-group {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+  
+  .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .font-weight-medium {
+    font-weight: 500;
+  }
+  
+  .title-color {
+    color: var(--title-color);
+  }
+  
+  .text-primary {
+    color: #377dff !important;
+  }
+  

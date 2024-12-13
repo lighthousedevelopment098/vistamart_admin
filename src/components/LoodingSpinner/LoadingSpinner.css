@@ -1,0 +1,70 @@
+.loading-overlay img {
+  width: 150px; 
+  height: 150px; 
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+@media (max-width: 768px) {
+  .loading-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
+
+
+
+/* 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+.loading-overlay img {
+  width: 150px;
+  height: 150px;
+}
+
+.loading-message {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  animation: fadeInOut 1s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .loading-overlay {
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+} */

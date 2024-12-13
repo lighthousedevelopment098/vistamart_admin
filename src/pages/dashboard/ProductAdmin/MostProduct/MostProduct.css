@@ -1,0 +1,314 @@
+
+  .card { 
+      position: relative; 
+      display: -ms-flexbox; 
+      display: flex; 
+      -ms-flex-direction: column; 
+      flex-direction: column; 
+      min-width: 0; 
+      word-wrap: break-word; 
+      background-color: #fff; 
+      background-clip: border-box; 
+      border: .0625rem solid rgba(231, 234, 243, .7); 
+      border-radius: .75rem;
+  } 
+  
+  .h-100 { 
+      height: 100% !important;
+  } 
+  
+  .card { 
+      box-shadow: 0 6px 12px rgba(140, 152, 164, .075);
+  } 
+  
+  .card { 
+      border-color: #f4f4f4; 
+      box-shadow: 0 5px 10px rgba(51,66,87,.05); 
+      transition: all .3s ease;
+  } 
+  
+  .col-md-6,.col-xl-4 { 
+      position: relative; 
+      width: 100%; 
+      padding-right: 15px; 
+      padding-left: 15px;
+  } 
+  
+  @media (min-width: 768px){ 
+    .col-md-6 { 
+      -ms-flex: 0 0 50%; 
+      flex: 0 0 50%; 
+      max-width: 50%;
+    } 
+  }     
+  
+  @media (min-width: 1200px){ 
+    .col-xl-4 { 
+      -ms-flex: 0 0 33.33333%; 
+      flex: 0 0 33.33333%; 
+      max-width: 33.33333%;
+    } 
+  }     
+  
+  .g-1 > * { 
+      padding-left: .25rem; 
+      padding-right: .25rem;
+  } 
+  
+  .g-1 > * { 
+      padding-top: .25rem; 
+      padding-bottom: .25rem;
+  } 
+  
+  .row { 
+      display: -ms-flexbox; 
+      display: flex; 
+      -ms-flex-wrap: wrap; 
+      flex-wrap: wrap; 
+      margin-right: -15px; 
+      margin-left: -15px;
+  } 
+  
+  body { 
+      margin: 0; 
+      font-family: "Open Sans", sans-serif; 
+      font-size: .875rem; 
+      font-weight: 400; 
+      line-height: 1.6; 
+      color: #677788; 
+      text-align: left; 
+      background-color: #fff;
+  } 
+  
+  body { 
+      overflow-x: hidden!important;
+  } 
+  
+  body { 
+      font-family: var(--font); 
+      color: var(--text-color); 
+      line-height: 1.4; 
+      background-color: #f9f9fb; 
+      -webkit-font-smoothing: antialiased;
+  } 
+  
+  html { 
+      font-family: sans-serif; 
+      line-height: 1.15; 
+      -webkit-text-size-adjust: 100%; 
+      -webkit-tap-highlight-color: transparent;
+  } 
+  
+  html { 
+      position: relative; 
+      min-height: 100%;
+  } 
+  
+  :root { 
+      --c1: #0177cd; 
+      --title-color: #334257; 
+      --text-color: #5b6777; 
+      --font: "Inter", sans-serif;
+  } 
+  
+  .card-body { 
+      -ms-flex: 1 1 auto; 
+      flex: 1 1 auto; 
+      min-height: 1px; 
+      padding: 1.3125rem;
+  } 
+  
+  *,:after,:before { 
+      box-sizing: border-box;
+  } 
+  
+  :selection { 
+      color: #fff; 
+      background-color: #377dff;
+  } 
+  
+  body ::-webkit-scrollbar { 
+      width: 4px; 
+      height: 6px;
+  } 
+  
+  body ::-webkit-scrollbar-thumb { 
+      background-color: darkgrey;
+  } 
+  
+  body ::-webkit-scrollbar-track { 
+      background: rgba(0,0,0,.14);
+  } 
+  
+  .g-1 > *, .gx-1 > * { 
+      padding-left: .25rem; 
+      padding-right: .25rem;
+  } 
+  
+  .basic-box-shadow { 
+      transition: all .3s ease;
+  } 
+  
+  a:hover { 
+      color: #0052ea; 
+      text-decoration: none;
+  } 
+  
+  a:hover { 
+      color: var(--c1);
+  } 
+  
+  .basic-box-shadow:hover { 
+      box-shadow: 2px 2px 15px rgba(7,59,116,.15);
+  } 
+  
+  .remove-card-shadow:hover { 
+      box-shadow: 0 5px 10px rgba(51,66,87,.05)!important;
+  } 
+  
+  .card:hover { 
+      box-shadow: 0 5px 24px rgba(7,59,116,.15);
+  } 
+  
+  .d-flex { 
+      display: -ms-flexbox !important; 
+      display: flex !important;
+  } 
+  
+  .align-items-center { 
+      -ms-flex-align: center !important; 
+      align-items: center !important;
+  } 
+  
+  .gap-10 { 
+      gap: 10px;
+  } 
+  
+  img { 
+      vertical-align: middle; 
+      border-style: none;
+  } 
+  
+  img { 
+      max-width: 100%;
+  } 
+  
+  .avatar { 
+      position: relative; 
+      display: inline-block; 
+      width: 2.625rem; 
+      height: 2.625rem; 
+      border-radius: .3125rem;
+  } 
+  
+  .col-12 { 
+      position: relative; 
+      width: 100%; 
+      padding-right: 15px; 
+      padding-left: 15px;
+  } 
+  
+  .col-12 { 
+      -ms-flex: 0 0 100%; 
+      flex: 0 0 100%; 
+      max-width: 100%;
+  } 
+  
+  .grid-card-wrap { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill,minmax(35%,1fr)); 
+      gap: 10px;
+  } 
+  
+  .grid-card { 
+      box-shadow: none; 
+      background-color: #fff; 
+      border-radius: 5px; 
+      padding: 15px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 10px; 
+      border: 1px solid rgba(110,137,175,.05);
+  } 
+  
+  .cursor-pointer { 
+      cursor: pointer;
+  } 
+  
+  .text-center { 
+      text-align: center !important;
+  } 
+  
+  .title-color { 
+      color: var(--title-color);
+  } 
+  
+  .fz-12 { 
+      font-size: 12px!important;
+  } 
+  
+  .line--limit-1 { 
+      display: -webkit-box; 
+      -webkit-box-orient: vertical; 
+      -webkit-line-clamp: 1; 
+      overflow: hidden; 
+      text-overflow: ellipsis;
+  } 
+  
+  .fz-10 { 
+      font-size: 10px!important;
+  } 
+  
+  .gap-1 { 
+      gap: 4px;
+  } 
+  
+  .rounded { 
+      border-radius: .3125rem !important;
+  } 
+  
+  .avatar-60 { 
+      width: 60px!important; 
+      min-width: 60px!important; 
+      height: 60px!important;
+  } 
+  
+  .avatar-bordered { 
+      border: 1px solid rgba(7,59,116,.3);
+  } 
+  
+  .font-weight-bold { 
+      font-weight: 600 !important;
+  } 
+  
+  .rating-color { 
+      color: #f06f00;
+  } 
+  
+  [class^="tio-"] { 
+      font-family: the-icon-of!important; 
+      font-size: 1.125em; 
+      speak: none; 
+      font-style: normal; 
+      font-weight: 400; 
+      font-variant: normal; 
+      text-transform: none; 
+      line-height: 1; 
+      letter-spacing: 0; 
+      -webkit-font-feature-settings: "liga"; 
+      -moz-font-feature-settings: "liga"; 
+      -ms-font-feature-settings: "liga" 1; 
+      font-feature-settings: "liga"; 
+      -webkit-font-variant-ligatures: discretionary-ligatures; 
+      font-variant-ligatures: discretionary-ligatures; 
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale;
+  } 
+  
+  .tio-star:before { 
+      content: "\e967";
+  } 
+  
+  
+  

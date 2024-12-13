@@ -1,0 +1,21 @@
+.quill-editor {
+     /* Set height for the editor */
+    background-color: #f9f9f9; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .ql-toolbar {
+    background-color: #f1f1f1; /* Background color for the toolbar */
+    border-radius: 8px 8px 0 0; /* Rounded corners for the toolbar */
+  }
+  
+  .ql-container {
+    border-radius: 0 0 8px 8px; /* Rounded corners for the container */
+  }
+  
+  .ql-editor {
+    min-height: 150px; /* Minimum height for the editor content */
+    font-size: 14px; /* Font size */
+    line-height: 1.6; /* Line height */
+  }
+  
