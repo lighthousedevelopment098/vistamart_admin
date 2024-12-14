@@ -39,25 +39,25 @@ function App() {
     initializeColors();
   }, []);
 
-  // useEffect(() => {
-  //   // Check for authentication on mount
-  //  const { token , user} = getAuthData();
-  //   if (token) {
-  //     setIsLoggedIn(true); // User is logged in
-  //     setUser(user); // Set user data from local storage
-  //   }
-  //   setLoading(false); // Finished loading
-  // }, []);
-
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    // Check for authentication on mount
+   const { token , user} = getAuthData();
     if (token) {
-      setIsLoggedIn(true);
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      setUser(storedUser); // Set user data from local storage
+      setIsLoggedIn(true); // User is logged in
+      setUser(user); // Set user data from local storage
     }
-    setLoading(false);
+    setLoading(false); // Finished loading
   }, []);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //     const storedUser = JSON.parse(localStorage.getItem("user"));
+  //     setUser(storedUser); // Set user data from local storage
+  //   }
+  //   setLoading(false);
+  // }, []);
 
 
 

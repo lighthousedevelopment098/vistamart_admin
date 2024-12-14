@@ -431,7 +431,6 @@
 // export default OrderDetails;
 
 
-
 import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { IoIosPrint } from "react-icons/io";
@@ -523,6 +522,12 @@ const OrderDetails = () => {
     fetchPickupId();
   }, [token, user?._id]);
 
+  if (!pickupId) {
+    toast.error("Please add a pickup address before booking shipping.");
+    navigate("/addpickupaddress"); // Navigate to the pickup ID setup page
+    return; // Stop further execution
+  }
+
   const handleBookShipping = async () => {
     const payload = {
       service_type_id: 1,
@@ -531,7 +536,7 @@ const OrderDetails = () => {
       consignee_city_id: order?.shippingAddress?.cityId,
       consignee_name: order?.customer?.firstName,
       consignee_address: order?.shippingAddress?.address,
-      consignee_phone_number_1: order?.customer?.phoneNumber,
+      consignee_phone_number_1: order?.shippingAddress?.phoneNumber,
       consignee_email_address: order?.customer?.email,
       order_id: order?.orderId, // Dynamic Order ID
       item_product_type_id: 12, // category id 
@@ -569,12 +574,12 @@ const OrderDetails = () => {
   
         
         const trackingId = data.tracking_number;
-        console.log("Tracking ID:", trackingId);
 
         await dispatch(updateOrder({ orderId: order?._id, trackingId })).unwrap();
   
         toast.success(`Shipping booked successfully! Tracking Number: ${data.tracking_number}`);
         setShowModal(false); // Close modal
+        navigate("/orderlist")
       } else {
         toast.error("Failed to book shipping. Please try again.");
       }
@@ -650,15 +655,22 @@ const OrderDetails = () => {
                 <p>{new Date(order?.createdAt).toLocaleString()}</p>
               </div>
               <div className="flex items-center gap-2">
-                <div>
-                <Button
-                variant="primary"
-                className="bg-primary-500 text-white hover:bg-primary-dark-500"
-                onClick={handleShow}
-              >
-                Book Shipping
-              </Button>
-                </div>
+              <div className="flex items-center gap-2">
+    {order?.trackingId ? (
+      <p 
+      className={`bg-secondary-500 font-bold p-1 rounded border text-primary-500 mt-3 mb-2`}
+      >
+        Tracking ID: {order?.trackingId}</p>
+    ) : (
+      <Button
+        variant="primary"
+        className="bg-primary-500 text-white hover:bg-primary-dark-500"
+        onClick={handleShow}
+      >
+        Book Shipping
+      </Button>
+    )}
+  </div>
                {/*
                 <button
                   className="borders rounded px-3 py-2  bg-primary flex items-center gap-2 text-white hover:bg-primary-dark"
@@ -679,15 +691,7 @@ const OrderDetails = () => {
                   {order?.status}
                 </span>
               </h1>
-              <h1>
-              Tracking Id :
-                <span
-                  className={`bg-secondary-500 font-bold p-1 rounded border text-primary-500 mt-3 mb-2`}
-                >
-
-                  {order?.trackingId || 0}
-                </span>
-              </h1>
+             
               <h1 className="pt-3 text-md">
                 Payment Method :
                 <span className="font-bold text-md">{order?.paymentMethod}</span>

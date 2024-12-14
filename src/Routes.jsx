@@ -10,12 +10,9 @@ import Sub_Sub_Categories from "./pages/admin/Categories/subSubCategories/Sub_Su
 import BulkImport from "./pages/admin/product/add/bulkImport/bulkImport.jsx";
 import CustomerReviews from "./pages/user/costumerReview/customerReviews.jsx";
 import CustomerList from "./pages/user/customerList/CustomerList.jsx";
-
 import CustomerBonusSetUp from "./pages/user/customerBonusSetUp/CustomerBonusSetUp.jsx";
-
 import CustomerLoyaltyReport from "./pages/user/customerLoyalityReport/CustomerLoyaltyReport.jsx";
 import EmployeeRoleSetup from "./pages/admin/employees/add/EmployeeRoleSetup.jsx";
-
 import EmployeeList from "./pages/admin/employees/list/Employees.jsx";
 import SubscriberList from "./pages/admin/subscriber/SubscriberList.jsx";
 import SystemSetup from "./pages/admin/settingSetup/SystemSetup.jsx";
@@ -28,7 +25,6 @@ import SocialMedia from "./pages/admin/pagesAndMedia/socialMedia/socialMedia.jsx
 import PageAndMedia from "./pages/admin/pagesAndMedia/pageAndMedia.jsx";
 import EarningReport from "./pages/admin/transactionReport/EarnReport/EarningReport.jsx";
 import InhouseSale from "./pages/admin/transactionReport/InhouseProduct/InhouseProduct.jsx";
-
 import Ticket_Support from "./pages/admin/healthSupport/Ticket_Support.jsx";
 import Message from "./pages/admin/healthSupport/Message.jsx";
 // import ProductGallery from "./pages/admin/healthSupport/Product_Gallery.jsx";
@@ -222,7 +218,6 @@ function AllRoutes() {
           path="/inhouselimitedproduct"
           element={<LimitedStockProductsList />}
         />
-
         <Route path="/businessinhouse" element={<InHouseBusiness />} />
         <Route path="/ticketsupport" element={<Ticket_Support />} />
         <Route path="/messagesupport" element={<Message />} />

@@ -195,7 +195,7 @@ const AddPickupAddress = () => {
           <button
             type="submit"
             className={`w-full p-2 rounded text-white ${
-              loading ? "bg-gray-400" : "bg-green-500 hover:bg-green-600"
+              loading ? "bg-primary-500" : "bg-primary-500 hover:bg-primary-dark-500"
             }`}
             disabled={loading}
           >

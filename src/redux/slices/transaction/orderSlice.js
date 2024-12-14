@@ -13,7 +13,6 @@ export const fetchOrder = createAsyncThunk(
   async (searchParams, { rejectWithValue }) => {
     try {
       const { token } = getAuthData(); 
-     console.log("token", token)
       const response = await axiosInstance.get(API_URL, {
         params: searchParams,
         headers: {
