@@ -787,7 +787,7 @@ const OrderDetails = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Item Discount</span>
-                  <span>- PKR 0.00</span>
+                  <span>- PKR {order?.totalDiscount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sub Total</span>
@@ -807,7 +807,7 @@ const OrderDetails = () => {
                 </div> */}
                 <div className="flex justify-between font-bold border-t pt-2">
                   <span>Total</span>
-                  <span>PKR {order?.totalAmount}</span>
+                  <span>PKR {order?.totalAmount-order?.totalDiscount}</span>
                 </div>
               </div>
             </div>
@@ -899,9 +899,9 @@ const OrderDetails = () => {
                   {/* <MdEdit className="text-[2rem] p-1 border hover:bg-primary-dark hover:text-white rounded border-primary bg-primary text-white" /> */}
                 </div>
                 <div className="space-y-1">
-                  <p className="text-md font-medium">{order?.customer?.firstName}</p>
+                  <p className="text-md font-medium">Name:{order?.vendor?.firstName}</p>
                   <p className="text-gray-500">
-                    Contact: {order?.customer?.phoneNumber}
+                    Contact: {order?.vendor?.phoneNumber}
                   </p>
                   <p className="text-gray-500">
                     Country: {order?.shippingAddress?.country}
