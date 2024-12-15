@@ -522,11 +522,7 @@ const OrderDetails = () => {
     fetchPickupId();
   }, [token, user?._id]);
 
-  if (!pickupId) {
-    toast.error("Please add a pickup address before booking shipping.");
-    navigate("/addpickupaddress"); // Navigate to the pickup ID setup page
-    return; // Stop further execution
-  }
+
 
   const handleBookShipping = async () => {
     const payload = {
