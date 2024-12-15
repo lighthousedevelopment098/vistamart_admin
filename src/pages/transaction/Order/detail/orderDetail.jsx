@@ -524,38 +524,107 @@ const OrderDetails = () => {
 
 
 
+  // const handleBookShipping = async () => {
+  //   //  check pickupid if not found the show toast notification and navigtate to /addpickupaddres
+    
+    
+  //   if (!pickupId) {
+  //     toast.error("Pickup address not found. Please add a pickup address.");
+  //     setTimeout(() => {
+  //       navigate("/addpickupaddress"); 
+  //     }, 2000); // Delay of 2 seconds
+  //     return;
+  //   }
+  
+  //   const payload = {
+  //     service_type_id: 1,
+  //     pickup_address_id: pickupId,
+  //     information_display: 0,
+  //     consignee_city_id: order?.shippingAddress?.cityId,
+  //     consignee_name: order?.customer?.firstName,
+  //     consignee_address: order?.shippingAddress?.address,
+  //     consignee_phone_number_1: order?.shippingAddress?.phoneNumber,
+  //     consignee_email_address: order?.customer?.email,
+  //     order_id: order?.orderId, // Dynamic Order ID
+  //     item_product_type_id: 12, // category id 
+  //     item_description: "One black t-shirt medium",
+  //     item_quantity: order?.totalQty,
+  //     item_insurance: 0,
+  //     item_price: order?.totalAmount,
+  //     pickup_date: pickupDate, // Pickup Date from Form
+  //     special_instructions: "Please call before delivery",
+  //     estimated_weight: parseFloat(weight), // Weight from Form
+  //     shipping_mode_id: 1,
+  //     same_day_timing_id: 1,
+  //     amount: order?.totalAmount,
+  //     payment_mode_id: 1,
+  //     charges_mode_id: 4,
+  //     open_shipment: 0,
+  //     pieces_quantity: 1,
+  //     shipper_reference_number_1: "Abdullah 1122",
+  //   };
+  
+  //   try {
+  //     console.log("Data to be submitted:", payload);
+  //     const response = await fetch("http://app.sonic.pk/api/shipment/book", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: import.meta.env.VITE_API_KEY,
+  //       },
+  //       body: JSON.stringify(payload),
+  //     });
+  
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log("Shipping data:", data);
+  
+        
+  //       const trackingId = data.tracking_number;
+
+  //       await dispatch(updateOrder({ orderId: order?._id, trackingId })).unwrap();
+  
+  //       toast.success(`Shipping booked successfully! Tracking Number: ${data.tracking_number}`);
+  //       setShowModal(false); // Close modal
+       
+  //       setTimeout(() => {
+  //         navigate("/orderlist")
+  //       }, 2000); // Delay of 2 seconds
+          
+
+    
+  //     } else {
+  //       toast.error("Failed to book shipping. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error occurred while booking shipping:", error);
+  //     toast.error("An error occurred while booking shipping.");
+  //   }
+  // };
+  
   const handleBookShipping = async () => {
+    if (!pickupId) {
+      Swal.fire({
+        title: "Error!",
+        text: "Pickup address not found. Please add a pickup address.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      setTimeout(() => {
+        navigate("/addpickupaddress");
+      }, 2000); // Delay of 2 seconds
+      return;
+    }
+  
     const payload = {
       service_type_id: 1,
       pickup_address_id: pickupId,
-      information_display: 0,
-      consignee_city_id: order?.shippingAddress?.cityId,
-      consignee_name: order?.customer?.firstName,
-      consignee_address: order?.shippingAddress?.address,
-      consignee_phone_number_1: order?.shippingAddress?.phoneNumber,
-      consignee_email_address: order?.customer?.email,
-      order_id: order?.orderId, // Dynamic Order ID
-      item_product_type_id: 12, // category id 
-      item_description: "One black t-shirt medium",
-      item_quantity: order?.totalQty,
-      item_insurance: 0,
-      item_price: order?.totalAmount,
-      pickup_date: pickupDate, // Pickup Date from Form
-      special_instructions: "Please call before delivery",
-      estimated_weight: parseFloat(weight), // Weight from Form
-      shipping_mode_id: 1,
-      same_day_timing_id: 1,
-      amount: order?.totalAmount,
-      payment_mode_id: 1,
-      charges_mode_id: 4,
-      open_shipment: 0,
-      pieces_quantity: 1,
-      shipper_reference_number_1: "Abdullah 1122",
+      // ...other payload fields
+      estimated_weight: parseFloat(weight),
     };
   
     try {
-      console.log("Data to be submitted:", payload);
-      const response = await fetch("http://app.sonic.pk/api/shipment/book", {
+      const response = await fetch("https://app.sonic.pk/api/shipment/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -568,24 +637,43 @@ const OrderDetails = () => {
         const data = await response.json();
         console.log("Shipping data:", data);
   
-        
         const trackingId = data.tracking_number;
-
+  
         await dispatch(updateOrder({ orderId: order?._id, trackingId })).unwrap();
   
-        toast.success(`Shipping booked successfully! Tracking Number: ${data.tracking_number}`);
+        Swal.fire({
+          title: "Success!",
+          text: `Shipping booked successfully! Tracking Number: ${data.tracking_number}`,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+  
         setShowModal(false); // Close modal
-        navigate("/orderlist")
+  
+        setTimeout(() => {
+          navigate("/packagingorder");
+        }, 2000); // Delay of 2 seconds
       } else {
-        toast.error("Failed to book shipping. Please try again.");
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to book shipping. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
     } catch (error) {
       console.error("Error occurred while booking shipping:", error);
-      toast.error("An error occurred while booking shipping.");
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while booking shipping.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
   
 
+  
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -737,14 +825,15 @@ const OrderDetails = () => {
                             <div className="flex items-center whitespace-nowrap">
                               <img
                                 src={
-                                  item?.thumbnail
-                                    ? `${apiConfig.bucket}/${item.thumbnail}`
+                                  item?.productDetails.thumbnail
+                                    ? `${apiConfig.bucket}/${item?.productDetails.thumbnail}`
                                     : fallbackImage
                                 }
-                                alt={item?.name || "Product Image"}
+                                alt={item?.productDetails?.name || "Product Image"}
                                 className="w-10 h-10 object-cover rounded mr-3"
                                 onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
                               />
+
 
                               <div>
                                 <div>{item?.name}</div>
@@ -797,14 +886,7 @@ const OrderDetails = () => {
                   <span>Coupon discount</span>
                   <span>- PKR 0.00</span>
                 </div>
-                {/* <div className="flex justify-between">
-                  <span>VAT/TAX</span>
-                   <span>${order.vatTax.toFixed(2)}</span>
-                </div> */}
-                {/* <div className="flex justify-between">
-                  <span>Delivery Fee</span>
-                   <span>${order.deliveryFee.toFixed(2)}</span> 
-                </div> */}
+               
                 <div className="flex justify-between font-bold border-t pt-2">
                   <span>Total</span>
                   <span>PKR {order?.totalAmount}</span>

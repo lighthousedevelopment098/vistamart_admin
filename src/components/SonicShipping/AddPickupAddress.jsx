@@ -4,10 +4,12 @@ import { toast, ToastContainer } from "react-toastify"; // Import toast library
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 import apiConfig from "../../config/apiConfig";
 import { getAuthData } from "../../utils/authHelper";
+import { useNavigate } from "react-router-dom";
 
 
 const AddPickupAddress = () => {
   const { token, user } = getAuthData();
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const [formData, setFormData] = useState({
     person_of_contact: "",
@@ -26,6 +28,7 @@ const AddPickupAddress = () => {
         const result = await axios.get("https://app.sonic.pk/api/cities", {
           headers: { Authorization: import.meta.env.VITE_API_KEY },
         });
+        console.log("city result",result)
         setCities(result.data.cities || []);
       } catch (err) {
         toast.error("Failed to fetch city list. Please try again later.");
@@ -111,6 +114,7 @@ const AddPickupAddress = () => {
       }
 
       toast.success("Pickup address added and shipping info updated!");
+      
       setFormData({
         person_of_contact: "",
         phone_number: "",
@@ -118,6 +122,11 @@ const AddPickupAddress = () => {
         address: "",
         city_id: "",
       });
+
+      // Navigate to /orderlist after success
+    setTimeout(() => {
+      navigate("/orderlist");
+    }, 2000); // Optional delay of 2 seconds before navigating
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "Failed to complete the process.";
