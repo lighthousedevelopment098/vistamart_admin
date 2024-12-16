@@ -452,6 +452,10 @@ const VendorWalletDetail = () => {
                 <span className="ml-2">{withdrawal.note || 'N/A'}</span>
               </div>
               <div className="flex items-center">
+                <h5 className="font-medium">Account No:</h5>
+                <span className="ml-2">{withdrawal.accountNumber || 'N/A'}</span>
+              </div>
+              <div className="flex items-center">
                 <h5 className="font-medium">Status:</h5>
                 <span className="ml-2">{withdrawal.status || 'Pending'}</span>
               </div>
