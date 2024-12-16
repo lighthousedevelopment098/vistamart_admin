@@ -461,7 +461,7 @@ const OrderDetails = () => {
   // const { orders, status, error } = useSelector((state) => state.vendorOrder);
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-  const [paymentStatus, setPaymentStatus] = useState();
+  const [paymentStatus, setPaymentStatus] = useState(false);
   const fallbackImage = "/image-place-holder.png"; // Replace with the path to your fallback image
   const [showModal, setShowModal] = useState(false);
   const [weight, setWeight] = useState("");

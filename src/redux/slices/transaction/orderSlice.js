@@ -1,22 +1,24 @@
 import axiosInstance from '../../../utils/axiosConfig'; // axios instance with interceptors
 import apiConfig from '../../../config/apiConfig'; // API URLs
 import { ErrorMessage } from '../../../utils/ErrorMessage'; // Error handling utility
-import { getAuthData } from '../../../utils/authHelper'; // Authentication token helper
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getAuthData } from '../../../utils/authHelper';
 
 // Use the transaction endpoint for orders
 const API_URL = `${apiConfig.transaction}/orders`;
+
+
+const { token } = getAuthData(); 
 
 // Async thunk to fetch orders
 export const fetchOrder = createAsyncThunk(
   'vendorOrder/fetchOrders',
   async (searchParams, { rejectWithValue }) => {
     try {
-      const { token } = getAuthData(); 
       const response = await axiosInstance.get(API_URL, {
         params: searchParams,
         headers: {
-          Authorization: `Bearer ${token}`, // Include the token in the header
+          Authorization: `Bearer ${token}`
         },
       });
       return response.data.doc; // Assuming the response contains orders in data.doc

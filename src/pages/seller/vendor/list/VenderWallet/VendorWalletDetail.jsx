@@ -343,6 +343,7 @@ import apiConfig from '../../../../../config/apiConfig';
 import { getAuthData } from '../../../../../utils/authHelper';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import LoadingSpinner from '../../../../../components/LoodingSpinner/LoadingSpinner';
 
 const VendorWalletDetail = () => {
   const { id } = useParams();
@@ -419,7 +420,7 @@ const VendorWalletDetail = () => {
   const handleModalShow = () => setShowModal(true);
 
   if (!withdrawal) {
-    return <div>Loading...</div>;
+    return <div><LoadingSpinner /></div>;
   }
 
   return (

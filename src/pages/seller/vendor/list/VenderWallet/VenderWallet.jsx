@@ -4,6 +4,7 @@ import ExportButton from "../../../../../components/ActionButton/Export";
 import ActionButton from "../../../../../components/ActionButton/Action";
 import { getAuthData } from "../../../../../utils/authHelper";
 import apiConfig from "../../../../../config/apiConfig";
+import LoadingSpinner from "../../../../../components/LoodingSpinner/LoadingSpinner";
 
 const ApiUrl = `${apiConfig.transaction}/withdraws`;
 
@@ -49,7 +50,7 @@ const VenderWallet = () => {
   }, [token]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><LoadingSpinner /></div>;
   }
 
   if (error) {

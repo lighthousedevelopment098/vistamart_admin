@@ -352,6 +352,7 @@ import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner
 import ExportButton from "../../../../components/ActionButton/Export";
 import ActionButton from "../../../../components/ActionButton/Action";
 import apiConfig from "../../../../config/apiConfig";
+import { getAuthData } from "../../../../utils/authHelper";
  const ApiUrl = `${apiConfig.transaction}/`
 const OrderManagement = ({ status, title }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -361,15 +362,21 @@ const OrderManagement = ({ status, title }) => {
     loading,
     error,
   } = useSelector((state) => state.vendorOrder || {});
-
+  const {token} = getAuthData();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting state
   const itemsPerPage = 5;
-
+   console.log("token---====", token)
   useEffect(() => {
-    dispatch(fetchOrder({ status }));
-  }, [dispatch, status]);
+    if (token) {
+      dispatch(fetchOrder({ status}));
+    }
+  }, [dispatch, status, token]);
+  
+  // useEffect(() => {
+  //   dispatch(fetchOrder({ status }));
+  // }, [dispatch, status]);
 
   // Filtering orders based on search query
   const filteredOrders = orders.filter(
