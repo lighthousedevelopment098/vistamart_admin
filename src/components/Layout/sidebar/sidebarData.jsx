@@ -72,7 +72,7 @@ export const sidebarItems = [
 
     // SubHeading: "dashboard",
     icon: <TbTrack />,
-    link: "/",
+    link: "/track-order",
     isDropdown: false,
   },
   {

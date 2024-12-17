@@ -17,6 +17,7 @@ const UpdateEmployeeRole = () => {
   const availableModules = [
     "Dashboard",
     "Order management",
+    "Track Order",
     "Refund management",
     "Category",
     "Brand",
