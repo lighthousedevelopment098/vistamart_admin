@@ -120,6 +120,7 @@ import UpdateVendor from "./pages/seller/vendor/add/addVender/UpdateVendor.jsx";
 import UpdateEmployeeRole from "./pages/admin/employees/add/updateEmployeRole.jsx";
 import VendorWalletDetail from "./pages/seller/vendor/list/VenderWallet/VendorWalletDetail.jsx";
 import AddPickupAddress from "./components/SonicShipping/AddPickupAddress.jsx";
+import TrackingOrder from "./pages/transaction/Order/list/TrackingOrder.jsx";
 
 function AllRoutes() {
   return (
@@ -139,6 +140,7 @@ function AllRoutes() {
         <Route path="/" element={<Dashboard />} />
     
         <Route path="/addpickupaddress" element={<AddPickupAddress />} />
+        <Route path="/track-order" element={<TrackingOrder />} />
 
         <Route path="/allorders" element={<OrderList />} />
         <Route path="/orderdetail/:id" element={<OrderDetails />} />

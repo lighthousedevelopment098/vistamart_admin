@@ -9,7 +9,7 @@ import {
   AiFillPicture,
   AiOutlineSpotify,
 } from "react-icons/ai";
-import { TbCategory2, TbWorld } from "react-icons/tb";
+import { TbCategory2, TbTrack, TbWorld } from "react-icons/tb";
 import {
   FaHeadset,
   FaKey,
@@ -65,6 +65,15 @@ export const sidebarItems = [
       { title: "Failed to Deliver", link: "/failedorder" },
       { title: "Canceled", link: "/cancel" },
     ],
+  },
+  {
+    title: "track order",
+    key: "track-order",
+
+    // SubHeading: "dashboard",
+    icon: <TbTrack />,
+    link: "/",
+    isDropdown: false,
   },
   {
     key: "refund-management",

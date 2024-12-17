@@ -207,6 +207,9 @@ const OrderList = () => {
                   <th onClick={() => requestSort("orderId")} scope="flex">
                     ID
                   </th>
+                  <th onClick={() => requestSort("trackingId")} scope="flex">
+                    Tracking ID
+                  </th>
 
                   <th onClick={() => requestSort("createdAt")} scope="flex">
                     Date
@@ -230,6 +233,8 @@ const OrderList = () => {
                     <td className="text-truncate" style={{ maxWidth: "150px" }}>
                       {order?.orderId}
                     </td>
+                    <td className="text-center text-primary-500 font-bold">{order?.trackingId || 0}</td>
+
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td>
                       {order.customer

@@ -78,7 +78,6 @@ const AddPickupAddress = () => {
           headers: { Authorization: import.meta.env.VITE_API_KEY },
         }
       );
-
       const { status, message, id: pickingAddressId } = pickupResult.data;
 
       // Handle response status
@@ -126,7 +125,8 @@ const AddPickupAddress = () => {
       // Navigate to /orderlist after success
     setTimeout(() => {
       navigate("/orderlist");
-    }, 2000); // Optional delay of 2 seconds before navigating
+    }, 2000); 
+    
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "Failed to complete the process.";
