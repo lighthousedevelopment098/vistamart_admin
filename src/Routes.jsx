@@ -58,7 +58,7 @@ import OrderReports from "./pages/admin/reportAndAnalysis/orderReports/orderRepo
 import InHouseSales from "./pages/admin/reportAndAnalysis/sales/InHouseSales.jsx";
 import VendorSales from "./pages/admin/reportAndAnalysis/sales/VendorSales.jsx";
 import TranscatioReports from "./pages/admin/reportAndAnalysis/salesAndTranscationReports/transactionalReport/TranscatioReports.jsx";
-import AddInHouseNewProduct from "./pages/admin/product/add/addProduct/AddProductForm.jsx";
+import AddInHouseNewProduct from "./pages/admin/product/add/addProduct/addProductForm.jsx";
 import ProfileInformation from "./components/ProfileInformation/ProfileInformation.jsx";
 
 import {
@@ -104,7 +104,7 @@ import CouponUpdate from "./pages/admin/offerAndDeals/coupon/couponUpdate.jsx";
 import FlashDeals from "./pages/admin/offerAndDeals/flashDeal/flashDeals.jsx";
 import DealOfTheDay from "./pages/admin/offerAndDeals/dealOfDay/dealOfDay.jsx";
 import FeatureDeal from "./pages/admin/offerAndDeals/featureDeal/featureDeal.jsx";
-import AddNewProduct from "./pages/admin/product/add/addProduct/AddProductForm.jsx";
+import AddNewProduct from "./pages/admin/product/add/addProduct/addProductForm.jsx";
 import AddFlashDealProdcut from "./pages/admin/offerAndDeals/flashDeal/addFlashDealProdcut.jsx";
 import WalletManagement from "./pages/user/customersWallet/customersWallet.jsx";
 import WithdrawalMethods from "./pages/seller/vendor/list/VenderWalletMethod/VenderWidrawmethod.jsx";
