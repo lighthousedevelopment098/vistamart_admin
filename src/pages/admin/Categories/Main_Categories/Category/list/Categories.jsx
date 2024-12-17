@@ -97,7 +97,6 @@ const Categories = () => {
 			priority: newCategory.priority,
 			logo: imageKey,
 		};
-		console.log("form data ", formData);
 	
 		try {
 			const { token } = getAuthData(); // Use getAuthData to retrieve token

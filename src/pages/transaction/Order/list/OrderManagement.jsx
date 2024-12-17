@@ -367,7 +367,6 @@ const OrderManagement = ({ status, title }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc"); // Sorting state
   const itemsPerPage = 5;
-   console.log("token---====", token)
   useEffect(() => {
     if (token) {
       dispatch(fetchOrder({ status}));

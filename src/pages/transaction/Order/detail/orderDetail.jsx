@@ -219,9 +219,9 @@ const OrderDetails = () => {
     setPaymentStatus(!paymentStatus);
   };
 
-  if (status === "loading") {
-    return <LoadingSpinner />;
-  }
+  // if (loading) {
+  //   return <LoadingSpinner />;
+  // }
 
   // // Check for errors
   // if (status === "failed") {
@@ -425,14 +425,14 @@ const OrderDetails = () => {
                     >
                       <option value="pending">Pending</option>
                       <option value="confirmed">Confirmed</option>
-                      {/* <option value="delivered">Delivered</option> */}
-                      {/* <option value="canceled">Cancelled</option> */}
+                      <option value="delivered">Delivered</option>
+                      <option value="canceled">Cancelled</option>
                       <option value="packaging">Packaging</option>
-                      {/* <option value="out_for_delivery">Out_for_delivery</option> */}
-                      {/* <option value="failed_to_deliver">
+                      <option value="out_for_delivery">Out_for_delivery</option>
+                       <option value="failed_to_deliver">
                         Failed_to_deliver
-                      </option> */}
-                      {/* <option value="returned">Returned</option> */}
+                      </option> 
+                      <option value="returned">Returned</option>
                     </select>
                   </label>
                   <label className="mt-3 flex justify-between items-center bg-white border border-gray-400 px-3 py-2 rounded">
