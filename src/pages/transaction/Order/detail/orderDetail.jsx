@@ -204,7 +204,7 @@ const OrderDetails = () => {
       } else if (status === "delivered") {
         navigate("/deliveredorder");
       } else if (status === "canceled") {
-        navigate("/cancel");
+        navigate("/cancelledorder");
       } else if (status === "failed_to_deliver") {
         navigate("/failedorder");
       } else if (status === "returned") {
@@ -219,10 +219,9 @@ const OrderDetails = () => {
     setPaymentStatus(!paymentStatus);
   };
 
-  // Check the loading state
-  // if (status === "loading") {
-  //   return <LoadingSpinner />;
-  // }
+  if (status === "loading") {
+    return <LoadingSpinner />;
+  }
 
   // // Check for errors
   // if (status === "failed") {

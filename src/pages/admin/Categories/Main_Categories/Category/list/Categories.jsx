@@ -80,46 +80,6 @@ const Categories = () => {
 		setNewCategory({ ...newCategory, logo: logoString });
 	};
 
-	// const handleFormSubmit = async (e) => {
-	// 	e.preventDefault();
-
-	// 	const uploadConfig = await getUploadUrl(selectedFile.type, "category");
-
-	// 	const imageKey = await uploadImage(uploadConfig, selectedFile);
-
-	// 	const formData = {
-	// 		name: newCategory.name,
-	// 		priority: newCategory.priority,
-	// 		logo: imageKey,
-	// 	};
-	// 	console.log("form data ", formData);
-
-	// 	try {
-	// 		const { token } = getAuthData(); // Use getAuthData to retrieve token
-	// 		const response = await fetch(API_URL, {
-	// 			method: "POST",
-	// 			headers: {
-	// 				Authorization: `Bearer ${token}`,
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify(formData),
-	// 		});
-
-	// 		if (!response.ok) {
-	// 			const responseData = await response.json();
-	// 			throw new Error(responseData.message || "Failed to add category");
-	// 		}
-
-	// 		toast.success("Category added successfully");
-	// 		startTransition(() => {
-	// 			dispatch(fetchCategories({})); // Refresh categories after adding
-	// 			setNewCategory({ name: "", priority: "", logo: "" }); // Clear form
-	// 		});
-	// 	} catch (error) {
-	// 		toast.error(error.message || "Failed to add category");
-	// 		console.error(error.message);
-	// 	}
-	// };
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
