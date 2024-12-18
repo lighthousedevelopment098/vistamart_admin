@@ -335,8 +335,8 @@ const OrderDetails = () => {
                             <div className="flex items-center whitespace-nowrap">
                               <img
                                 src={
-                                  item?.productDetails.thumbnail
-                                    ? `${apiConfig.bucket}/${item?.productDetails.thumbnail}`
+                                  item?.productDetails?.thumbnail
+                                    ? `${apiConfig.bucket}/${item?.productDetails?.thumbnail}`
                                     : fallbackImage
                                 }
                                 alt={item?.productDetails?.name || "Product Image"}
