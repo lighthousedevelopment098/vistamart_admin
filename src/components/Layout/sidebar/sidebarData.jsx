@@ -92,7 +92,7 @@ export const sidebarItems = [
     
     title: "Categories Setup",
     SubHeading: "Product management",
-    key: "category-management",
+    key: "category",
     icon: <TbCategory2 />,
     isDropdown: true,
     subItems: [
@@ -105,7 +105,7 @@ export const sidebarItems = [
   {
     title: "Brand",
     icon: <FaStar />,
-    key:"brand-management",
+    key:"brand",
 
     isDropdown: true,
     subItems: [
@@ -274,7 +274,7 @@ export const sidebarItems = [
 
   {
     title: "Customers",
-   key:"customer-management",
+   key:"customer",
     SubHeading: "Customers",
     icon: <MdOutlineFolderZip />,
     isDropdown: true,
@@ -300,7 +300,7 @@ export const sidebarItems = [
   },
   {
     title: "Employees",
-    key:"employee-management",
+    key:"employee",
     // SubHeading: "Employee management",
     icon: <IoPersonOutline />,
     isDropdown: true,

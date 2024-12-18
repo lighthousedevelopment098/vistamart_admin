@@ -31,7 +31,7 @@ export const updateCustomerStatus = createAsyncThunk(
   'customers/updateCustomerStatus',
   async ({ id, status }, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.patch(`${API_URL}/status/${id}`, 
+      const response = await axiosInstance.put(`${API_URL}/status/${id}`, 
         { status }, 
         {
           headers: {
@@ -39,6 +39,7 @@ export const updateCustomerStatus = createAsyncThunk(
           },
         }
       );
+      console.log("customer block response", response)
       return { id, status: response.data.status }; // Return the updated status
     } catch (error) {
       return rejectWithValue(ErrorMessage(error));

@@ -39,6 +39,21 @@ const CustomerList = React.memo(() => {
   }, [customers, searchQuery]);
 
   // Handle status update (block/unblock)
+  // const handleStatusUpdate = (customerId, newStatus) => {
+  //   Swal.fire({
+  //     title: `Are you sure you want to ${
+  //       newStatus === "active" ? "unblock" : "block"
+  //     } this customer?`,
+  //     showCancelButton: true,
+  //     confirmButtonText: "Yes",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       dispatch(updateCustomerStatus({ id: customerId, status: newStatus }));
+  //     }
+  //   });
+  // };
+
+
   const handleStatusUpdate = (customerId, newStatus) => {
     Swal.fire({
       title: `Are you sure you want to ${
@@ -48,10 +63,29 @@ const CustomerList = React.memo(() => {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(updateCustomerStatus({ id: customerId, status: newStatus }));
+        // Optimistically update the status in the UI
+        dispatch(updateCustomerStatus({ id: customerId, status: newStatus }))
+          .unwrap() // Ensure the Redux action resolves
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: `Customer has been ${
+                newStatus === "active" ? "unblocked" : "blocked"
+              } successfully.`,
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong. Please try again.",
+              icon: "error",
+            });
+          });
       }
     });
   };
+  
 
   // Handle customer deletion
   const handleDelete = (customerId) => {
