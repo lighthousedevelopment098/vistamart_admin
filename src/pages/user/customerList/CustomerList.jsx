@@ -242,12 +242,12 @@ const CustomerList = React.memo(() => {
                       >
                         <FaTrash />
                       </button> */}
-                      {/* <ActionButton
+                      <ActionButton
                         // to={`/admin/customer/view/${customer._id}`}
                         to={"/customerdetails"}
                         icon={FaEye} // Pass dynamic icon
                         className="ml-4"
-                      /> */}
+                      />
                       <ActionButton
                         onClick={() => handleDelete(customer._id)}
                         icon={FaTrash} // Pass dynamic icon

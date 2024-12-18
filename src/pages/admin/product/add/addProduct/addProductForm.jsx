@@ -53,6 +53,7 @@ const AddNewProduct = () => {
     unit: "",
     tags: [""],
     price: "",
+    weight: "0",
     discount: "",
     discountType: "percent",
     discountAmount: "",
@@ -130,7 +131,7 @@ const AddNewProduct = () => {
           ? checked
           : name === "discountType" && !value
           ? "percent" // Default to 'percent'
-          : ["price", "discountAmount", "taxAmount", "discount"].includes(name)
+          : ["price","weight", "discountAmount", "taxAmount", "discount"].includes(name)
           ? parseInt(value, 10) || 0
           : value,
     }));

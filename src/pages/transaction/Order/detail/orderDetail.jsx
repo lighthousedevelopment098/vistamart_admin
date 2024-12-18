@@ -250,7 +250,7 @@ const OrderDetails = () => {
               </div>
               <div className="flex items-center gap-2">
               <div className="flex items-center gap-2">
-    {order?.trackingId ? (
+        {order?.trackingId ? (
       <p 
       className={`bg-secondary-500 font-bold p-1 rounded border text-primary-500 mt-3 mb-2`}
       >
@@ -435,7 +435,7 @@ const OrderDetails = () => {
                       <option value="returned">Returned</option>
                     </select>
                   </label>
-                  <label className="mt-3 flex justify-between items-center bg-white border border-gray-400 px-3 py-2 rounded">
+                  {/* <label className="mt-3 flex justify-between items-center bg-white border border-gray-400 px-3 py-2 rounded">
                     <span className="text-gray-700">Payment Status</span>
                     <div className="flex items-center mt-1">
                       <span className="mr-2 text-primary-500">Paid</span>
@@ -452,7 +452,7 @@ const OrderDetails = () => {
                         />
                       </button>
                     </div>
-                  </label>
+                  </label> */}
                 </div>
               </div>
             </div>
