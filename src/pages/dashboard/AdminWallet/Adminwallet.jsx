@@ -73,7 +73,7 @@ const Adminwallet = () => {
         </div>
         <div className="col-lg-8">
           <div className="row g-2">
-            <div className="col-md-6">
+            {/* <div className="col-md-6">
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">
                   <div className="d-flex flex-column align-items-start">
@@ -89,7 +89,7 @@ const Adminwallet = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="col-md-6">
               <div className="card card-body h-100 justify-content-center">
                 <div className="d-flex gap-2 justify-content-between align-items-center">

@@ -259,6 +259,7 @@ function AllRoutes() {
           path="/addvenderwidthrawtmethod"
           element={<WithdrawalMethods />}
         />
+        
         {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
     </>

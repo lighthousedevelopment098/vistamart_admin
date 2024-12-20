@@ -219,6 +219,9 @@ const OrderDetails = () => {
     setPaymentStatus(!paymentStatus);
   };
 
+  const subtotal = order?.products?.reduce((total, item) => {
+    return total + (item.productDetails?.price || 0) * (item?.quantity || 0);
+  }, 0);
   // if (loading) {
   //   return <LoadingSpinner />;
   // }
@@ -333,16 +336,25 @@ const OrderDetails = () => {
                           <td className="px-4 py-2 text-center">{index + 1}</td>
                           <td className="px-4 py-2 w-full">
                             <div className="flex items-center whitespace-nowrap">
-                              <img
-                                src={
-                                  item?.productDetails?.thumbnail
-                                    ? `${apiConfig.bucket}/${item?.productDetails?.thumbnail}`
-                                    : fallbackImage
-                                }
-                                alt={item?.productDetails?.name || "Product Image"}
-                                className="w-10 h-10 object-cover rounded mr-3"
-                                onError={(e) => (e.target.src = fallbackImage)} // Fallback image if load fails
-                              />
+                            {item?.productDetails ? (
+  <img
+    src={
+      item.productDetails.thumbnail
+        ? `${apiConfig.bucket}/${item.productDetails.thumbnail}`
+        : fallbackImage
+    }
+    alt={item.productDetails.name || "Product Image"}
+    className="w-10 h-10 object-cover rounded mr-3"
+    onError={(e) => (e.target.src = fallbackImage)}
+  />
+) : (
+  <img
+    src={fallbackImage}
+    alt="Fallback Product Image"
+    className="w-10 h-10 object-cover rounded mr-3"
+  />
+)}
+
 
 
                               <div>
@@ -379,29 +391,43 @@ const OrderDetails = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="mt-4">
-                <div className="flex justify-between border-t pt-2">
-                  <span>Item price</span>
-                  <span>PKR {order?.totalAmount}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Item Discount</span>
-                  <span>- PKR 0.00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sub Total</span>
-                  <span>PKR {order?.totalAmount}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Coupon discount</span>
-                  <span>- PKR 0.00</span>
-                </div>
-               
-                <div className="flex justify-between font-bold border-t pt-2">
-                  <span>Total</span>
-                  <span>PKR {order?.totalAmount}</span>
-                </div>
-              </div>
+             
+              <div className="mt-4 flex  gap-2 flex-col">
+  <div className="flex justify-between">
+    <span>Sub Total</span>
+    <span>Rs. {subtotal}</span>
+  </div>
+ 
+  <div className="flex justify-between">
+    <span>Shipping</span>
+    <span>Rs. {order?.totalShippingCost.toLocaleString()}</span>
+  </div>
+
+  <div className="flex justify-between">
+    <span>Discount</span>
+    <span>- Rs. {order?.totalDiscount.toLocaleString()}</span>
+  </div>
+ <div className="flex justify-between">
+    <span>Tax</span>
+    <span>Rs. {order?.totalTaxAmount.toLocaleString()}</span>
+  </div>
+  <div className="flex justify-between border-t pt-2">
+    <span>Payment Method</span>
+    <span>{order?.paymentMethod}</span>
+  </div>
+  <div className="flex justify-between font-bold border-t pt-2">
+    <span>Total Amount (after tax, discount, and shipping)</span>
+    <span>
+      Rs.{" "}
+      {(
+        subtotal +
+        order?.totalTaxAmount +
+        order?.totalShippingCost -
+        order?.totalDiscount
+      ).toLocaleString()}
+    </span>
+  </div>
+</div>
             </div>
           </div>
 

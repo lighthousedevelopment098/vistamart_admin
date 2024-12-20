@@ -233,8 +233,14 @@ const OrderList = () => {
                     <td className="text-truncate" style={{ maxWidth: "150px" }}>
                       {order?.orderId}
                     </td>
-                    <td className="text-center text-primary-500 font-bold">{order?.trackingId || 0}</td>
-
+                    <td className="text-center text-primary-500 font-bold">
+  {console.log("tracking id====", order?.trackingId)}
+  {order?.trackingId == 0
+    ? "Not Booked"
+    : order?.trackingId !== undefined && order?.trackingId !== null
+    ? order.trackingId
+    : "Not Booked"}
+</td>
                     <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                     <td>
                       {order.customer
