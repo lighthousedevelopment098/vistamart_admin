@@ -19,11 +19,14 @@ const CategoryUpdate = () => {
     name: "",
     priority: 0,
     logo: "",
+    shippingCategoryId:1
+
   });
   const [selectedFile, setSelectedFile] = useState(null); // To store selected file for upload
   const [previewUrl, setPreviewUrl] = useState(""); // To store the image preview URL
   const [selectedLang, setSelectedLang] = useState("en"); // Set default language to English
 
+   
   // Fetch category data by ID
   useEffect(() => {
     if (id) {
@@ -31,6 +34,25 @@ const CategoryUpdate = () => {
     }
   }, [id]);
 
+  // const fetchCategoryById = async (categoryId) => {
+  //   try {
+  //     const { token } = getAuthData(); // Get token
+  //     const response = await axios.get(`${ApiUrl}/categories/${categoryId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const { name, priority, logo, shippingCategoryId } = response.data.doc;
+  //     setCategoryData({ name, priority, logo,shippingCategoryId });
+  //     setPreviewUrl(`${apiConfig.bucket}/${logo}`); // Set initial preview URL
+  //   } catch (error) {
+  //     console.error("Failed to fetch category:", error);
+  //     toast.error("Failed to fetch category data");
+  //   }
+  // };
+
+  // List of Track Categories
+  
   const fetchCategoryById = async (categoryId) => {
     try {
       const { token } = getAuthData(); // Get token
@@ -39,20 +61,57 @@ const CategoryUpdate = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const { name, priority, logo } = response.data.doc;
-      setCategoryData({ name, priority, logo });
+  
+      // Ensure shippingCategoryId is available in the response
+      const { name, priority, logo, shippingCategoryId } = response.data.doc;
+  
+      // Set category data with a default value for shippingCategoryId if not available
+      setCategoryData({
+        name,
+        priority,
+        logo,
+        shippingCategoryId: shippingCategoryId || 1, // Default to 1 if not available
+      });
       setPreviewUrl(`${apiConfig.bucket}/${logo}`); // Set initial preview URL
     } catch (error) {
       console.error("Failed to fetch category:", error);
       toast.error("Failed to fetch category data");
     }
   };
+  
+  const trackCategories = [
+    { id: 1, description: "Apparel" },
+    { id: 2, description: "Automotive Parts" },
+    { id: 3, description: "Accessories" },
+    { id: 4, description: "Personal Electronics (Mobile Phones, Laptops, etc.)" },
+    { id: 5, description: "Electronics Accessories (Cases, Chargers, etc.)" },
+    { id: 6, description: "Gadgets" },
+    { id: 7, description: "Jewellery" },
+    { id: 8, description: "Cosmetics" },
+    { id: 9, description: "Stationery" },
+    { id: 10, description: "Handicrafts" },
+    { id: 11, description: "Home-made Items" },
+    { id: 12, description: "Footwear" },
+    { id: 13, description: "Watches" },
+    { id: 14, description: "Leather Items" },
+    { id: 15, description: "Organic and Health Products" },
+    { id: 16, description: "Appliances and Consumer Electronics" },
+    { id: 17, description: "Home Decor and Interior Items" },
+    { id: 18, description: "Toys" },
+    { id: 19, description: "Pet Supplies" },
+    { id: 20, description: "Athletics and Fitness Items" },
+    { id: 21, description: "Vouchers and Coupons" },
+    { id: 22, description: "Marketplace" },
+    { id: 23, description: "Documents and Letters" },
+    { id: 24, description: "Other" },
+  ];
 
   // Handle input change for category form fields
   const handleInputChange = (e) => {
     setCategoryData({ ...categoryData, [e.target.name]: e.target.value });
   };
 
+  
   // Handle file selection for logo upload
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -83,11 +142,12 @@ const CategoryUpdate = () => {
         return; // Exit if image upload fails
       }
     }
-
+    console.log("category data====", categoryData)
     const formData = {
       name: categoryData.name,
       priority: categoryData.priority,
       logo: logoKey, // Use the new logo key from upload or existing
+      shippingCategoryId: categoryData.shippingCategoryId
     };
 
     try {
@@ -107,9 +167,12 @@ const CategoryUpdate = () => {
       }
 
       const responseData = await response.json();
-      console.log("Category updated:", responseData);
       toast.success("Category updated successfully"); // Show success toast
-      navigate("/categories"); // Navigate after successful update
+ 
+      setTimeout(() => {
+        navigate("/categories");
+      }, 2000); // Delay of 2 seconds
+        
     } catch (error) {
       console.error("Error updating category:", error);
       toast.error("Error updating category"); // Show error toast
@@ -139,9 +202,9 @@ const CategoryUpdate = () => {
                         onClick={() => setSelectedLang(lang)}
                       >
                         {lang === "en" && "English(EN)"}
-                        {lang === "sa" && "Arabic(SA)"}
+                        {/* {lang === "sa" && "Arabic(SA)"}
                         {lang === "bd" && "Bangla(BD)"}
-                        {lang === "in" && "Hindi(IN)"}
+                        {lang === "in" && "Hindi(IN)"} */}
                       </span>
                     </li>
                   ))}
@@ -149,9 +212,11 @@ const CategoryUpdate = () => {
                 <CategoryForm
                   selectedLang={selectedLang}
                   categoryData={categoryData}
+                  
                   onInputChange={handleInputChange}
                   onFileChange={handleFileChange}
                   previewUrl={previewUrl} // Pass previewUrl to CategoryForm
+                  trackCategories={trackCategories} // Pass trackCategories to CategoryForm
                 />
               </form>
             </div>
@@ -168,6 +233,7 @@ const CategoryForm = ({
   onInputChange,
   onFileChange,
   previewUrl, // Accept previewUrl as a prop
+  trackCategories, // Receive trackCategories as a prop
 }) => {
   return (
     <div className="row">
@@ -194,6 +260,29 @@ const CategoryForm = ({
             />
           </div>
         ))}
+{
+  console.log("categoery daa===", categoryData)
+}
+        
+<div className="form-group">
+              <label className="title-color">Select  Category</label>
+              <select
+                className="form-control outline-none hover:border-primary-500"
+                name="shippingCategoryId"
+                value={categoryData.shippingCategoryId}
+                onChange={onInputChange}
+                required
+              >
+                <option value="" disabled>
+                  Select a  Category
+                </option>
+                {trackCategories?.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.description}
+                  </option>
+                ))}
+              </select>
+            </div>
         <div className="form-group">
           <label className="title-color" htmlFor="priority">
             Priority

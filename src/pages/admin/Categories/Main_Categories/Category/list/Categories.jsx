@@ -33,7 +33,8 @@ const Categories = () => {
 		name: "",
 		priority: "",
 		logo: "",
-		status:"active"
+		traxCategoryId: "",
+		
 	});
 
 	const [searchQuery, setSearchQuery] = useState("");
@@ -91,13 +92,15 @@ const Categories = () => {
 			toast.error("Image upload failed, please try again.");
 			return; // Prevent further form submission if image upload fails
 		}
-	
+
 		const formData = {
 			name: newCategory.name,
 			priority: newCategory.priority,
 			logo: imageKey,
+			// shippingCategoryId: newCategory.traxCategoryId,
+            
 		};
-	
+	      console.log("form data =====", formData)
 		try {
 			const { token } = getAuthData(); // Use getAuthData to retrieve token
 			const response = await fetch(API_URL, {
@@ -117,6 +120,7 @@ const Categories = () => {
 			toast.success(`Category "${newCategory.name}" added successfully`);
 			startTransition(() => {
 				dispatch(fetchCategories({})); // Refresh categories after adding
+				// setNewCategory({ name: "", priority: "",shippingCategoryId:"", logo: "" }); // Clear form
 				setNewCategory({ name: "", priority: "", logo: "" }); // Clear form
 			});
 		} catch (error) {
