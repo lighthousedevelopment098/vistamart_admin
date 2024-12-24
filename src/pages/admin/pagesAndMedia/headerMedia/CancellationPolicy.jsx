@@ -7,7 +7,6 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // make sure to import the styles
 import { toast } from 'react-toastify';  // Import toast for notifications
 import FormSection from "../../../../components/FormInput/FormSection";
-import FormInput from "../../../../components/FormInput/FormInput";
 import LoadingSpinner from "../../../../components/LoodingSpinner/LoadingSpinner";
 
 const API_URL = apiConfig.admin;
