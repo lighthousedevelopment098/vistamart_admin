@@ -16,10 +16,7 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           value: 100, // Cap at 100%
         },
       });
-    } else if (
-      formData.discountType === "flat" &&
-      formData.discountAmount > formData.price
-    ) {
+    } else if (formData.discountType === "flat" && formData.discountAmount > formData.price) {
       handleChange({
         target: {
           name: "discountAmount",
@@ -27,29 +24,15 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
         },
       });
     }
-  }, [
-    formData.discountType,
-    formData.discountAmount,
-    formData.discount,
-    formData.price,
-    handleChange,
-  ]);
+  }, [formData.discountType, formData.discountAmount, formData.discount, formData.price, handleChange]);
 
   useEffect(() => {
     if (formData.discountType === "percent" && formData.discount > 100) {
       toast.error("Discount amount cannot exceed 100%.");
-    } else if (
-      formData.discountType === "flat" &&
-      formData.discountAmount > formData.price
-    ) {
+    } else if (formData.discountType === "flat" && formData.discountAmount > formData.price) {
       toast.error("Discount amount cannot exceed the price.");
     }
-  }, [
-    formData.discountAmount,
-    formData.discount,
-    formData.discountType,
-    formData.price,
-  ]);
+  }, [formData.discountAmount, formData.discount, formData.discountType, formData.price]);
 
   const handleDiscountFocus = (e) => {
     // Reset the relevant discount field when focused
@@ -60,10 +43,7 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           value: "", // Clear the input field
         },
       });
-    } else if (
-      e.target.name === "discountAmount" &&
-      formData.discountAmount === 0
-    ) {
+    } else if (e.target.name === "discountAmount" && formData.discountAmount === 0) {
       handleChange({
         target: {
           name: "discountAmount",
@@ -89,18 +69,35 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
             required
           />
         </div>
-        {/* weight */}
-        <div className="flex flex-col">
-          <label>Weight (Grams)</label>
+        {/* <div className="flex flex-col">
+          <label>Weight (In Kilo Grams)</label>
           <FormInput
             type="number"
             name="weight"
             value={formData.weight}
             onChange={handleChange}
-            placeholder="weight in grams"
+            placeholder="Weight (Kilo Grams)"
             required
           />
+        </div> */}
+
+<div className="flex flex-col">
+          <label>Weight (In Kilograms)</label>
+          <FormInput
+            type="number"
+            name="weight"
+            value={formData.weight}
+            onChange={handleChange}
+            placeholder="Weight (Kilograms)"
+            required
+          />
+          {formData.weight && (
+            <span className="text-gray-500 text-sm">
+              {`Weight in Grams: ${(formData.weight * 1000).toFixed(2)} g`}
+            </span>
+          )}
         </div>
+        
 
         {/* Minimum Order Quantity */}
         <div className="flex flex-col px-2">
@@ -135,6 +132,7 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
             value={formData.discountType}
             onChange={handleChange}
             options={[
+              { value: "", label: "No Discount" },
               { value: "percent", label: "Percentage" },
               { value: "flat", label: "Flat Amount" },
             ]}
@@ -220,3 +218,4 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
 };
 
 export default ProductAdditional;
+

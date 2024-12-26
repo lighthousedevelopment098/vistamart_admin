@@ -133,9 +133,9 @@ const OrderDetails = () => {
       item_price: order?.totalAmount,
       pickup_date: pickupDate, // Pickup Date from Form
       special_instructions: "Please call before delivery",
-      estimated_weight: parseFloat(weight), // Weight from Form
+      estimated_weight: parseFloat(totalWeight.toFixed(2)) || 1, // Total weight
       shipping_mode_id: 1,
-      // same_day_timing_id: 1,
+      same_day_timing_id: 1,
       amount: order?.totalAmount,
       payment_mode_id: 1,
       charges_mode_id: 4,
@@ -222,6 +222,15 @@ const OrderDetails = () => {
   const subtotal = order?.products?.reduce((total, item) => {
     return total + (item.productDetails?.price || 0) * (item?.quantity || 0);
   }, 0);
+
+  // Calculate total weight
+const totalWeight = order?.products.reduce(
+  (sum, item) => sum + (item.productDetails?.weight || 0) * (item.quantity || 1),
+  0
+);
+console.log("weight caluclate----", totalWeight)
+
+
   // if (loading) {
   //   return <LoadingSpinner />;
   // }
@@ -241,7 +250,6 @@ const OrderDetails = () => {
           <h1 className="text-xl font-bold">Order Details</h1>
         </div>
         <br />
-{console.log(order)}
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-5">
           <div className="col-span-1 lg:col-span-4 bg-white rounded h-full border-gray-400 hover:shadow-md p-2">
             <div className="flex justify-between items-center">
@@ -252,22 +260,25 @@ const OrderDetails = () => {
                 <p>{new Date(order?.createdAt).toLocaleString()}</p>
               </div>
               <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2">
-        {order?.trackingId ? (
-      <p 
-      className={`bg-secondary-500 font-bold p-1 rounded border text-primary-500 mt-3 mb-2`}
-      >
-        Tracking ID: {order?.trackingId}</p>
-    ) : (
-      <Button
-        variant="primary"
-        className="bg-primary-500 text-white hover:bg-primary-dark-500"
-        onClick={handleShow}
-      >
-        Book Shipping
-      </Button>
-    )}
-  </div>
+              {
+}
+<div className="flex items-center gap-2">
+  {order?.trackingId !== "0" ? (
+    <p className="bg-secondary-500 font-bold p-1 rounded border text-primary-500 mt-3 mb-2">
+      Tracking ID: {order?.trackingId}
+    </p>
+  ) : order?.status === "packaging" ? (
+    <Button
+      variant="primary"
+      className="bg-primary-500 text-white hover:bg-primary-dark-500"
+      onClick={handleShow}
+    >
+      Book Shipping
+    </Button>
+  ) : (
+    <p className="text-gray-500">No Tracking ID</p>
+  )}
+</div>
                
                 <button
                   className="borders rounded px-3 py-2  bg-primary flex items-center gap-2 text-white hover:bg-primary-dark"
@@ -597,19 +608,21 @@ const OrderDetails = () => {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white rounded-lg p-6 w-96">
             <h2 className="text-lg font-bold mb-4">Book Shipping</h2>
-            <label className="block mb-2 text-sm font-medium">Weight</label>
+            {/* <label className="block mb-2 text-sm font-medium">Weight</label>
             <input
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
               className="w-full border rounded px-3 py-2 mb-4"
               placeholder="Enter weight"
-            />
+            /> */}
             <label className="block mb-2 text-sm font-medium">Pickup Date</label>
             <input
               type="date"
               value={pickupDate}
               onChange={(e) => setPickupDate(e.target.value)}
+              min={new Date().toISOString().split("T")[0]} // Restrict to current or future dates
+
               className="w-full border rounded px-3 py-2 mb-4"
             />
             <div className="flex justify-end gap-3">
@@ -621,7 +634,7 @@ const OrderDetails = () => {
               </button>
               <button
                 onClick={handleBookShipping}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-dark-500"
               >
                 Submit
               </button>
@@ -637,30 +650,3 @@ export default OrderDetails;
 
 
 
-
-    // get the tracking id from from handlebokingshipping and update order 
-  //   const getTrackingId = async () => {
-  //     try {
-  //       const response = await fetch(`http://app.sonic.pk/api/shipment get_tracking_number/${order?.shippingId}`, {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: import.meta.env.VITE_API_KEY
-  //         },
-  //       });
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         console.log("tracking data ===", data)
-  //         order.trackingId = data.tracking_number;
-  //       } else {
-  //         toast.error("Failed to get tracking number. Please try again.");
-  //       }
-  //     } catch (error) {
-  //       toast.error("An error occurred while getting tracking number.");
-  //     }
-  //   };
-  //   getTrackingId();
-
-
-  // Modal handlers
- 

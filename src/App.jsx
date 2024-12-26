@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./redux/slices/admin/authSlice"; // Adjust the import path if necessary
 import AllRoutes from "./Routes.jsx";
 import "./App.css";
-import Sidebar from "./components/Layout/sidebar/sidebar.jsx";
+import Sidebar from "./components/Layout/sidebar/sideBar.jsx";
 import LoadingSpinner from "./components/LoodingSpinner/LoadingSpinner.jsx";
 import ForgotPassword from "./components/ForgetPassword/ForgetPassword.jsx";
 import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";

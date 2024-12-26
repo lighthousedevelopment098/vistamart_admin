@@ -15,17 +15,20 @@ import FormSelect from "../../../../../../components/FormInput/FormSelect";
 const generateSKU = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
-
 const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   const dispatch = useDispatch();
   const { categories, subCategories, subSubCategories, brands } = useSelector(
     (state) => state.category
   );
 
-  const [tags, setTags] = useState(
-    (formData.tags || []).filter((tag) => tag.trim() !== "")
-  );
 
+  // const [tags, setTags] = useState(
+  //   formData.tags ? formData.tags.split(",") : []
+  // );
+  // Use formData.tags directly as an array
+  const [tags, setTags] = useState((formData.tags || []).filter(tag => tag.trim() !== ""));
+
+  
   const [filteredSubCategories, setFilteredSubCategories] = useState([]);
   const [filteredSubSubCategories, setFilteredSubSubCategories] = useState([]);
 
@@ -37,6 +40,22 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
     dispatch(fetchAttributes());
   }, [dispatch]);
 
+  useEffect(() => {
+    setTags((formData.tags || []).filter((tag) => tag.trim() !== ""));
+  }, [formData.tags]);
+
+  useEffect(() => {
+    if (!formData.category) {
+      setFilteredSubCategories([]);
+    }
+  }, [formData.category]);
+  
+  useEffect(() => {
+    if (!formData.subCategory) {
+      setFilteredSubSubCategories([]);
+    }
+  }, [formData.subCategory]);
+  
   // Fetch subcategories based on selected category
   useEffect(() => {
     if (formData.category) {
@@ -59,7 +78,8 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
       setFilteredSubSubCategories(relevantSubSubCategories);
     }
   }, [formData.subCategory, subSubCategories]);
-
+  
+  
   // SKU generation
   const handleGenerateSKU = () => {
     const newSKU = generateSKU();
@@ -69,32 +89,42 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
     }));
   };
 
-  // Adding a tag
-  const handleTagInput = (e) => {
-    if (e.key === "Enter" && e.target.value.trim()) {
-      e.preventDefault();
-      const newTag = e.target.value.trim();
-      if (!tags.includes(newTag)) {
-        const updatedTags = [...tags, newTag];
-        setTags(updatedTags);
-        setFormData((prevData) => ({
-          ...prevData,
-          tags: updatedTags, // Store tags as an array in formData
-        }));
-      }
-      e.target.value = ""; // Clear input after adding tag
+// Adding a tag
+const handleTagInput = (e) => {
+  if (e.key === "Enter" && e.target.value.trim()) {
+    e.preventDefault();
+    const newTag = e.target.value.trim();
+    if (!tags.includes(newTag)) {
+      const updatedTags = [...tags, newTag];
+      setTags(updatedTags);
+      setFormData((prevData) => ({
+        ...prevData,
+        tags: updatedTags, // Store tags as an array in formData
+      }));
     }
-  };
+    e.target.value = ""; // Clear input after adding tag
+  }
+};
 
-  // Removing a tag
-  const removeTag = (indexToRemove) => {
-    const updatedTags = tags.filter((_, index) => index !== indexToRemove);
-    setTags(updatedTags);
-    setFormData((prevData) => ({
-      ...prevData,
-      tags: updatedTags, // Update tags array in formData
-    }));
-  };
+// Removing a tag
+const removeTag = (indexToRemove) => {
+  const updatedTags = tags.filter((_, index) => index !== indexToRemove);
+  setTags(updatedTags);
+  setFormData((prevData) => ({
+    ...prevData,
+    tags: updatedTags, // Update tags array in formData
+  }));
+};
+
+// Modified handleChange for productType
+const handleProductTypeChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value,
+    digitalProductType: value === "physical" ? "" : prevData.digitalProductType, // Clear digitalProductType if "physical"
+  }));
+};
 
   return (
     <>
@@ -103,7 +133,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Category */}
           <div className="flex flex-col px-2">
-            <FormSelect
+            {/* <FormSelect
               label="Category"
               name="category"
               value={formData.category}
@@ -117,87 +147,65 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                   : [{ value: "", label: "Not Category Found" }]
               }
               required
-            />
+            /> */}
+
+
+<FormSelect
+  label="Category"
+  name="category"
+  value={formData.category || ""} // Default to empty string
+  onChange={handleChange}
+  options={
+    categories.length > 0
+      ? categories.map((category) => ({
+          value: category._id,
+          label: category.name,
+        }))
+      : [{ value: "", label: "Not Category Found" }]
+  }
+/>
+
           </div>
+
 
           {/* <div className="flex flex-col px-2">
   <FormSelect
     label="Sub-Category"
     name="subCategory"
-    value={formData.subCategory} // Corrected the key to match its singular form
-    onChange={(e) =>
-      setFormData({ ...formData, subCategory: e.target.value })
-    }
-    options={
-      filteredSubCategories.length > 0
-        ? filteredSubCategories.map((subCategory) => ({
-            value: subCategory._id, // Ensure you're setting the correct _id here
-            label: subCategory.name,
-          }))
-        : []
-    }
-  
-    disabled={filteredSubCategories.length === 0} // Disable if no options are available
+    value={formData.subCategory || ""}
+    onChange={handleChange}
+    options={[
+      ...filteredSubCategories.map((subCategory) => ({
+        value: subCategory._id,
+        label: subCategory.name,
+      })),
+    ]}
   />
 </div> */}
 
-          <div className="flex flex-col px-2">
-            <FormSelect
-              label="Sub-Category"
-              name="subCategory"
-              value={formData.subCategory || ""}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  subCategory: e.target.value === "" ? null : e.target.value,
-                })
-              }
-              options={[
-                ...(filteredSubCategories.length > 0
-                  ? filteredSubCategories.map((subCategory) => ({
-                      value: subCategory._id,
-                      label: subCategory.name,
-                    }))
-                  : []),
-              ]}
-            />
-          </div>
 
-          {/* Sub-Sub-Category */}
-          {/* <div className="flex flex-col px-2">
-            <FormSelect
-              label="Sub-Sub-Category"
-              name="subSubCategory"
-              value={formData.subSubCategory}
-              onChange={handleChange}
-              options={
-                filteredSubSubCategories.length > 0
-                  ? filteredSubSubCategories.map((subSubCategory) => ({
-                      value: subSubCategory._id, // Ensure correct field here
-                      label: subSubCategory.name,
-                    }))
-                  : [{ value: "", label: "Not Sub-Sub-Category Found" }]
-              }
-            />
-          </div> */}
-
-          <div className="flex flex-col px-2">
-            <FormSelect
-              label="Sub-Sub-Category"
-              name="subSubCategory"
-              value={formData.subSubCategory}
-              onChange={handleChange}
-              options={
-                filteredSubSubCategories.length > 0
-                  ? filteredSubSubCategories.map((subSubCategory) => ({
-                      value: subSubCategory._id, // Ensure correct field here
-                      label: subSubCategory.name,
-                    }))
-                  : [] // Leave empty array if no options are available
-              }
-            />
-          </div>
-
+<div className="flex flex-col px-2">
+  <FormSelect
+    label="Sub-Category"
+    name="subCategory"
+    value={formData.subCategory || ""}
+    onChange={(e) =>
+      setFormData({
+        ...formData,
+        subCategory: e.target.value === "" ? null : e.target.value,
+      })
+    }
+    options={[
+      ...(filteredSubCategories.length > 0
+        ? filteredSubCategories.map((subCategory) => ({
+            value: subCategory._id,
+            label: subCategory.name,
+          }))
+        : []),
+    ]}
+  />
+</div>
+ 
           {/* Brand */}
           <div className="flex flex-col px-2">
             <FormSelect
@@ -211,18 +219,18 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                       value: brand._id,
                       label: brand.name,
                     }))
-                  : [{ value: "", label: "Not Brand Found" }]
+                  : []
               }
               required
             />
           </div>
-          {/* Product Type */}
-          <div className="flex flex-col px-2">
+                  {/* Other FormSelect fields here... */}
+                  <div className="flex flex-col px-2">
             <FormSelect
               label="Product Type"
               name="productType"
-              value={formData.productType}
-              onChange={handleChange}
+              value={formData?.productType}
+              onChange={handleProductTypeChange} // Use the custom handler
               options={[
                 { value: "physical", label: "Physical" },
                 { value: "digital", label: "Digital" },
@@ -231,7 +239,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             />
           </div>
           {/* Conditionally Render Digital Product Type */}
-          {formData.productType === "digital" && (
+          {formData?.productType === "digital" && (
             <div className="flex flex-col px-2">
               <FormSelect
                 label="Digital Product Type"
@@ -245,6 +253,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
               />
             </div>
           )}
+
           {/* SKU */}
           <div className="flex flex-col px-2">
             <div className="flex justify-between items-center">
@@ -253,7 +262,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
                 className="text-primary-500   flex g items-center hover:text-primary-dark-500"
                 onClick={handleGenerateSKU}
               >
-                <IoIosInformationCircleOutline className="text-[1rem] text-primary-500 hover:text-primary-dark-500" />
+                <IoIosInformationCircleOutline className="text-[1rem]" />
                 Generate Code
               </button>
             </div>
@@ -261,7 +270,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             <div className="form-group flex items-center">
               <input
                 type="text"
-                className="form-control form-control-user flex-1 outline-none hover:border-primary-500"
+                className="form-control form-control-user flex-1"
                 name="sku"
                 placeholder="Code"
                 value={formData.sku}
@@ -318,7 +327,7 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
             ))}
             <input
               type="text"
-              className="flex-1 border-none outline-none focus:ring-0 p-1 hover:border-primary-500"
+              className="flex-1 border-none outline-none focus:ring-0 p-1"
               placeholder="Press Enter to add tag"
               onKeyPress={handleTagInput}
             />

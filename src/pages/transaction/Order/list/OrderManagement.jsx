@@ -558,7 +558,6 @@ const OrderManagement = ({ status, title }) => {
                       <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                       <td className="text-center">{order?.orderId}</td>
                       <td className="text-center text-primary-500 font-bold">
-  {console.log("tracking id====", order?.trackingId)}
   {order?.trackingId == 0
     ? "Not Booked"
     : order?.trackingId !== undefined && order?.trackingId !== null

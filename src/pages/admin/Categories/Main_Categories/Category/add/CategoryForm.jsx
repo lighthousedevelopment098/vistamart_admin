@@ -196,10 +196,9 @@ const CategoryForm = ({
         <div className="row">
           <div className="col-lg-6">
             {["en", "sa", "bd", "in"].map((lang) => (
-              <div
-                className={`form-group ${
-                  selectedLang === lang ? "" : "d-none"
-                } form-system-language-form`}
+            
+            <div               className={`form-group ${   selectedLang === lang ? "" : "d-none"  }
+             form-system-language-form`}
                 key={lang}
                 id={`${lang}-form`}
               >
