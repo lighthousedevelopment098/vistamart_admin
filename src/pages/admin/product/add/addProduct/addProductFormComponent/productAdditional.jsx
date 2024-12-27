@@ -53,6 +53,44 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
     }
   };
 
+  const handleDiscountTypeChange = (e) => {
+    const { name, value } = e.target;
+    handleChange({
+      target: {
+        name,
+        value,
+      },
+    });
+
+    // Reset the discount values when switching types
+    if (value === "percent") {
+      handleChange({ target: { name: "discountAmount", value: 0 } });
+    } else if (value === "flat") {
+      handleChange({ target: { name: "discount", value: 0 } });
+    }
+  };
+
+  const calculateShippingCost = (price) => {
+    if (price <= 3000) return 0;
+    if (price <= 5000) return 100;
+    if (price <= 10000) return 200;
+    if (price <= 30000) return 300;
+    if (price > 30000) return Math.ceil(price * 0.01); // 1% of the price
+    return 0;
+  };
+
+  useEffect(() => {
+    if (formData.price) {
+      const shippingCost = calculateShippingCost(formData.price);
+      handleChange({
+        target: {
+          name: "shippingCost",
+          value: shippingCost,
+        },
+      });
+    }
+  }, [formData.price, handleChange]);
+
   return (
     <FormSection title="Pricing & Others" icon={<IoMdPerson />}>
       <ToastContainer />
@@ -69,19 +107,21 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
             required
           />
         </div>
-        {/* <div className="flex flex-col">
-          <label>Weight (In Kilo Grams)</label>
+       
+        {/* Shipping cost */}
+        <div className="flex flex-col px-2">
+          <label>Shipping TAX (Rs.)</label>
           <FormInput
-            type="number"
-            name="weight"
-            value={formData.weight}
+            type="text"
+            name="shippingCost"
+            value={formData.shippingCost}
             onChange={handleChange}
-            placeholder="Weight (Kilo Grams)"
-            required
+            placeholder="Shipping Cost"
           />
-        </div> */}
+        </div>
 
-<div className="flex flex-col">
+        {/* Weight */}
+        <div className="flex flex-col">
           <label>Weight (In Kilograms)</label>
           <FormInput
             type="number"
@@ -97,7 +137,6 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
             </span>
           )}
         </div>
-        
 
         {/* Minimum Order Quantity */}
         <div className="flex flex-col px-2">
@@ -112,70 +151,57 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           />
         </div>
 
-        {/* Stock */}
-        <div className="flex flex-col px-2">
-          <FormInput
-            label="Current Stock Qty"
-            name="stock"
-            placeholder="Stock"
-            value={formData.stock}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
+       
         {/* Discount Type */}
         <div className="flex flex-col px-2">
           <FormSelect
             label="Discount Type"
             name="discountType"
             value={formData.discountType}
-            onChange={handleChange}
+            onChange={handleDiscountTypeChange}
             options={[
-              { value: "", label: "No Discount" },
               { value: "percent", label: "Percentage" },
               { value: "flat", label: "Flat Amount" },
             ]}
           />
         </div>
 
-        {/* Show Discount Fields based on discount type */}
-        {formData.discountType === "percent" && (
+        {/* Discount Fields */}
+        {formData.discountType === "percent" ? (
           <div className="flex flex-col px-2">
             <label>Discount Amount ( % )</label>
-            <div className="relative">
-              <FormInput
-                type="number"
-                name="discount"
-                value={formData.discount}
-                onChange={handleChange}
-                onFocus={handleDiscountFocus}
-                placeholder="Discount Percentage"
-                required
-              />
-            </div>
+            <FormInput
+              type="number"
+              name="discount"
+              value={formData.discount}
+              onChange={handleChange}
+              onFocus={handleDiscountFocus}
+              placeholder="Discount Percentage"
+              required
+            />
           </div>
-        )}
-
-        {formData.discountType === "flat" && (
+        ) : formData.discountType === "flat" ? (
           <div className="flex flex-col px-2">
             <label>Discount Amount ( Rs )</label>
-            <div className="relative">
-              <FormInput
-                type="number"
-                name="discountAmount"
-                value={formData.discountAmount}
-                onChange={handleChange}
-                onFocus={handleDiscountFocus}
-                placeholder="Discount Amount (Rs)"
-                required
-              />
-            </div>
+            <FormInput
+              type="number"
+              name="discountAmount"
+              value={formData.discountAmount}
+              onChange={handleChange}
+              onFocus={handleDiscountFocus}
+              placeholder="Discount Amount (Rs)"
+              required
+            />
+          </div>
+        ) : (
+          <div className="flex flex-col px-2">
+            <label>Discount</label>
+            <span className="text-gray-500">No Discount</span>
           </div>
         )}
 
         {/* Tax Amount */}
-        <div className="flex flex-col px-2">
+   <div className="flex flex-col px-2">
           <label>Tax Amount ( % )</label>
           <FormInput
             type="number"
@@ -201,21 +227,21 @@ const ProductAdditional = ({ formData = {}, handleChange }) => {
           </div>
         </div>
 
-        {/* Shipping cost link */}
-        <div className="flex flex-col px-2">
-          <label>Shipping Cost (Rs.)</label>
+         {/* Stock */}
+         <div className="flex flex-col px-2">
           <FormInput
-            type="text"
-            name="shippingCost"
-            value={formData.shippingCost}
+            label="Current Stock Qty"
+            name="stock"
+            placeholder="Stock"
+            value={formData.stock}
             onChange={handleChange}
-            placeholder="Shipping Cost"
+            required
           />
         </div>
+   
       </div>
     </FormSection>
   );
 };
 
 export default ProductAdditional;
-

@@ -470,6 +470,7 @@ const AddNewProduct = () => {
 			// Merge form data with defaults
 			const productData = {
 				...formData,
+				price: formData.price + formData.shippingCost,
 				discountType: formData.discountType || "percent", // Fallback to 'percent'
 				userId,
 				thumbnail: thumbnailKey,
