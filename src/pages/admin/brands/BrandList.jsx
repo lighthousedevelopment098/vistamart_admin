@@ -20,7 +20,7 @@ const LazyTableList = lazy(() =>
 	import("../../../components/FormInput/TableList")
 );
 
-const BUCKET_URL = import.meta.env.VITE_BUCKET_URL;
+
 
 const BrandList = () => {
 	const dispatch = useDispatch();

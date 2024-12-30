@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const WebsiteColorCard = ({ primaryColor: initialPrimaryColor, secondaryColor: initialSecondaryColor, onColorChange }) => {
-  const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor || '#1455AC');
-  const [secondaryColor, setSecondaryColor] = useState(initialSecondaryColor || '#F58300');
+  const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor || '#32954B');
+  const [secondaryColor, setSecondaryColor] = useState(initialSecondaryColor || '#6FE291');
 
   // Call onColorChange when primaryColor or secondaryColor changes
   const handlePrimaryColorChange = (e) => {

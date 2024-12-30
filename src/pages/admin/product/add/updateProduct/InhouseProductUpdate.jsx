@@ -225,7 +225,6 @@ const InhouseProductUpdate = () => {
 
       const productData = {
         ...formData,
-
         thumbnail: thumbnailKey,
         images: imageKeys,
         price: formData.price + formData.shippingCost,

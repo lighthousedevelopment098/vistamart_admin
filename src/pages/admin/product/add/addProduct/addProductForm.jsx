@@ -357,36 +357,36 @@ const AddNewProduct = () => {
 	const { token, user } = getAuthData();
 	const userId = user?._id;
 
-    // Fetch pickupId on component mount
-    useEffect(() => {
-        const fetchPickupId = async () => {
-            try {
-                const response = await axios.get(
-                    `${apiConfig.seller}/shippingInfo?vendorId=${user?._id}`,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                );
+    // // Fetch pickupId on component mount
+    // useEffect(() => {
+    //     const fetchPickupId = async () => {
+    //         try {
+    //             const response = await axios.get(
+    //                 `${apiConfig.seller}/shippingInfo?vendorId=${user?._id}`,
+    //                 { headers: { Authorization: `Bearer ${token}` } }
+    //             );
 
-                const pickingAddressId = response.data.doc?.[0]?.pickingAddressId || null;
-                setPickupId(pickingAddressId);
-                if (!pickingAddressId) {
-                    // Navigate to pickup page if no pickup ID is found
-                    Swal.fire({
-                        title: "Pickup Point Required",
-                        text: "Before adding a product, you must set a pickup location where the delivery boy can collect your product.",
-                        icon: "info",
-                        confirmButtonText: "Add Pickup Point",
-                        allowOutsideClick: false,
-                    }).then(() => {
-                        navigate("/addpickupaddress");
-                    });
-                }
-            } catch (err) {
-                console.error("Failed to fetch Pickup ID:", err.response || err.message);
-            }
-        };
+    //             const pickingAddressId = response.data.doc?.[0]?.pickingAddressId || null;
+    //             setPickupId(pickingAddressId);
+    //             if (!pickingAddressId) {
+    //                 // Navigate to pickup page if no pickup ID is found
+    //                 Swal.fire({
+    //                     title: "Pickup Point Required",
+    //                     text: "Before adding a product, you must set a pickup location where the delivery boy can collect your product.",
+    //                     icon: "info",
+    //                     confirmButtonText: "Add Pickup Point",
+    //                     allowOutsideClick: false,
+    //                 }).then(() => {
+    //                     navigate("/addpickupaddress");
+    //                 });
+    //             }
+    //         } catch (err) {
+    //             console.error("Failed to fetch Pickup ID:", err.response || err.message);
+    //         }
+    //     };
 
-        fetchPickupId();
-    }, [token, user?._id, navigate]);
+    //     fetchPickupId();
+    // }, [token, user?._id, navigate]);
 	useEffect(() => {
 		dispatch(fetchCategories());
 		dispatch(fetchBrands());

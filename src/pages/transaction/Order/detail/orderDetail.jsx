@@ -103,6 +103,16 @@ const OrderDetails = () => {
   }, [token, user?._id]);
 
 
+  const cleanHTML = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+  
+  const shippingCategoryId = order?.products?.[0]?.productDetails?.category?.shippingCategoryId;
+  const shippingCategoryDescription = order?.products?.[0]?.productDetails?.description;
+  const cleanedDescription = cleanHTML(shippingCategoryDescription);
+  
+  
 
   const handleBookShipping = async () => {
     //  check pickupid if not found the show toast notification and navigtate to /addpickupaddres
@@ -126,8 +136,8 @@ const OrderDetails = () => {
       consignee_phone_number_1: order?.shippingAddress?.phoneNumber,
       consignee_email_address: order?.customer?.email,
       order_id: order?.orderId, // Dynamic Order ID
-      item_product_type_id: 12, // category id 
-      item_description: "One black t-shirt medium",
+      item_product_type_id: shippingCategoryId, // category id 
+      item_description: cleanedDescription,
       item_quantity: order?.totalQty,
       item_insurance: 0,
       item_price: order?.totalAmount,

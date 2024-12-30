@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTruckPickup } from "react-icons/fa6";
 import { IoMdPerson } from "react-icons/io";
 import { IoHomeSharp, IoSettings } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ const Footer = () => {
               to={"/addpickupaddress"}
               className="flex items-center text-nowrap gap-2"
             >
-              <IoSettings />
+              <FaTruckPickup />
               <h1>Add Pickup Address</h1>
             </Link>
           </div>

@@ -11,7 +11,6 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import Footer from "./components/Layout/footer/footer.jsx";
 import { RiMenuUnfold3Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { checkAuth } from "./redux/slices/admin/authSlice"; // Adjust the import path if necessary
 import AllRoutes from "./Routes.jsx";
 import "./App.css";
 import Sidebar from "./components/Layout/sidebar/sideBar.jsx";
@@ -21,6 +20,8 @@ import ResetPassword from "./components/ForgetPassword/ResetPassword.jsx";
 import { ColorScheam } from "./utils/ColorScheam.js";
 import ForgotPasswordViaPhone from "./components/ForgetPassword/ForgotPasswordViaPhone.jsx";
 import { getAuthData } from "./utils/authHelper.js";
+import { fetchBusinessGeneral } from "./redux/slices/admin/bussinessSlices/generalSlice.js";
+import apiConfig from "./config/apiConfig";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -49,15 +50,24 @@ function App() {
     setLoading(false); // Finished loading
   }, []);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     setIsLoggedIn(true);
-  //     const storedUser = JSON.parse(localStorage.getItem("user"));
-  //     setUser(storedUser); // Set user data from local storage
-  //   }
-  //   setLoading(false);
-  // }, []);
+  const dispatch = useDispatch();
+  const { business } = useSelector((state) => state.businessGeneral); // Get business data from Redux
+  
+  useEffect(() => {
+    // Fetch business data on component mount
+    dispatch(fetchBusinessGeneral());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (business) {
+      const faviconUrl = business[0]?.favicon || '/logo1.png'; 
+      const link = document.querySelector("link[rel='icon']") || document.createElement('link');
+      link.rel = 'icon';
+      link.href = `${`${apiConfig.bucket}`}/${faviconUrl}`;
+      document.head.appendChild(link); 
+    }
+  }, [business]);
+
 
 
 

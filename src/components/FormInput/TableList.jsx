@@ -32,31 +32,7 @@ const TableList = memo(
     // Calculate total pages based on filtered data
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-    // useEffect(() => {
-    //   // Filter data based on search query
-    //   const filtered = searchQuery
-    //     ? listData.filter((item) =>
-    //         item.name?.toLowerCase().includes(searchQuery.toLowerCase())
-    //       )
-    //     : listData;
-
-    //   // Sort filtered data
-    //   let sortedData = [...filtered];
-    //   if (sortConfig.key) {
-    //     sortedData.sort((a, b) => {
-    //       if (a[sortConfig.key] < b[sortConfig.key]) {
-    //         return sortConfig.direction === "ascending" ? -1 : 1;
-    //       }
-    //       if (a[sortConfig.key] > b[sortConfig.key]) {
-    //         return sortConfig.direction === "ascending" ? 1 : -1;
-    //       }
-    //       return 0;
-    //     });
-    //   }
-
-    //   setFilteredData(sortedData);
-    // }, [listData, searchQuery, sortConfig]);
-
+   
     // Filter and sort data based on `searchQuery`, `columns`, and `sortConfig`
     useEffect(() => {
       const filtered = searchQuery
