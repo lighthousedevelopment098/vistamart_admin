@@ -18,16 +18,14 @@ const EarningReport = () => {
         switch (currentTab) {
             case 'adminearning':
                 return (
-                    // <a className="text-capitalize" href="https://6valley.6amtech.com/admin/social-login/view">Social media login content goes here</a>
-                    // Replace with actual content for social media login
+                  
                     <StatisticsCard />
                 );
             case 'venderearning':
                 return (
-                    // <a className="text-capitalize" href="https://6valley.6amtech.com/admin/social-login/view">Social media login content goes here</a>
-                    // Replace with actual content for social media login
+                  
                     <StatisticsCard />
-                    // <SocialLoginSettings />
+                    
                 );
            
           

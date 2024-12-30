@@ -17,13 +17,11 @@ const ProductAttributes = ({
 
   const dispatch = useDispatch();
   const [selectedAttribute, setSelectedAttribute] = useState("");
-  // Fetch colors and attributes from the Redux store
   useEffect(() => {
     dispatch(fetchColors());
     dispatch(fetchAttributes());
   }, [dispatch]);
 
-  // Get colors and attributes from the Redux store
   const { colors, attributes } = useSelector((state) => state.category);
   const handleAttributeChange = (e) => {
     const selectedAttr = attributes.find((attr) => attr._id === e.target.value);
