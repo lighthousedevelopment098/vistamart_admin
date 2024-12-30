@@ -5,8 +5,8 @@ node_modules/
 # Ignore IDE/editor files
 .vscode/
 # Ignore build outputs
-dist/
+# dist/
 coverage/
-build/
+# build/
 # Ignore log files
 *.log
