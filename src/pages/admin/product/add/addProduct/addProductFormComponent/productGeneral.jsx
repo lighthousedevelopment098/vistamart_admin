@@ -22,17 +22,13 @@ const ProductGeneral = ({ formData, handleChange, setFormData }) => {
   );
 
 
-  // const [tags, setTags] = useState(
-  //   formData.tags ? formData.tags.split(",") : []
-  // );
-  // Use formData.tags directly as an array
+  
   const [tags, setTags] = useState((formData.tags || []).filter(tag => tag.trim() !== ""));
 
   
   const [filteredSubCategories, setFilteredSubCategories] = useState([]);
   const [filteredSubSubCategories, setFilteredSubSubCategories] = useState([]);
 
-  // Fetch categories, brands, colors, and attributes on mount
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(fetchBrands());
