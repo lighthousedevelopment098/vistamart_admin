@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa";
 import { IoMdDownload } from "react-icons/io";
 import ExportButton from "../../../../../components/ActionButton/Export";
+import apiConfig from "../../../../../config/apiConfig";
+ const ApiUrl = apiConfig.transaction
 const OrderTranscation = () => {
   const graphdata = {
     labels: [

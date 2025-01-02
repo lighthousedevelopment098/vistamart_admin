@@ -121,6 +121,7 @@ import UpdateEmployeeRole from "./pages/admin/employees/add/updateEmployeRole.js
 import VendorWalletDetail from "./pages/seller/vendor/list/VenderWallet/VendorWalletDetail.jsx";
 import AddPickupAddress from "./components/SonicShipping/AddPickupAddress.jsx";
 import TrackingOrder from "./pages/transaction/Order/list/TrackingOrder.jsx";
+import AllOrderTranscation from "./pages/admin/reportAndAnalysis/salesAndTranscationReports/transactionalReport/allTransaction.jsx";
 
 function AllRoutes() {
   return (
@@ -207,7 +208,8 @@ function AllRoutes() {
         <Route path="/earningreport" element={<EaringReports />} />
         <Route path="/inhousesales" element={<InHouseSales />} />
         <Route path="/vendersale" element={<VendorSales />} />
-        <Route path="/transactionrepo" element={<TranscatioReports />} />
+        {/* <Route path="/transactionrepo" element={<TranscatioReports />} /> */}
+        <Route path="/transactionrepo" element={<AllOrderTranscation />} />
 
         <Route path="/productreport" element={<ProductReports />} />
         <Route path="/orderreport" element={<OrderReports />} />

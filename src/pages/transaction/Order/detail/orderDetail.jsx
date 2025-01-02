@@ -114,9 +114,7 @@ const OrderDetails = () => {
   
   
 
-  const handleBookShipping = async () => {
-    //  check pickupid if not found the show toast notification and navigtate to /addpickupaddres
-    
+  const handleBookShipping = async () => {   
     
     if (!pickupId) {
       toast.error("Pickup address not found. Please add a pickup address.");
@@ -136,16 +134,16 @@ const OrderDetails = () => {
       consignee_phone_number_1: order?.shippingAddress?.phoneNumber,
       consignee_email_address: order?.customer?.email,
       order_id: order?.orderId, // Dynamic Order ID
-      item_product_type_id: shippingCategoryId, // category id 
+      item_product_type_id: shippingCategoryId || 3, // category id 
       item_description: cleanedDescription,
-      item_quantity: order?.totalQty,
+      item_quantity: order?.totalQty || 1, 
       item_insurance: 0,
-      item_price: order?.totalAmount,
+  
       pickup_date: pickupDate, // Pickup Date from Form
       special_instructions: "Please call before delivery",
       estimated_weight: parseFloat(totalWeight.toFixed(2)) || 1, // Total weight
       shipping_mode_id: 1,
-      same_day_timing_id: 1,
+     
       amount: order?.totalAmount,
       payment_mode_id: 1,
       charges_mode_id: 4,
